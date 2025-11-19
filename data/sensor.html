@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHA-1 Configuration Portal</title>
+    <style>
+        .calibration-table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            /* border: 1px solid rgba(99, 102, 241, 0.2); */
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            border-radius: 5px;
+            padding: 8px;
+        }
+
+        .calibration-table input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .calibration-table input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Sensor ${i+1} Calibration Table</h2>
+    <h3>Point Table</h3>
+    <table class="calibration-table">
+        <tr>
+            <th>Point</th>
+            <th>Enable</th>
+            <th>Raw Value</th>
+            <th>Calib Value</th>
+        </tr>
+        <tr>
+            <td>P 1</td>
+            <td><input type="checkbox" id="calib-table-point1-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point1-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point1-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 2</td>
+            <td><input type="checkbox" id="calib-table-point2-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point2-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point2-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 3</td>
+            <td><input type="checkbox" id="calib-table-point3-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point3-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point3-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 4</td>
+            <td><input type="checkbox" id="calib-table-point4-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point4-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point4-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 5</td>
+            <td><input type="checkbox" id="calib-table-point5-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point5-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point5-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 6</td>
+            <td><input type="checkbox" id="calib-table-point6-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point6-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point6-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 7</td>
+            <td><input type="checkbox" id="calib-table-point7-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point7-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point7-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 8</td>
+            <td><input type="checkbox" id="calib-table-point8-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point8-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point8-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 9</td>
+            <td><input type="checkbox" id="calib-table-point9-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point9-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point9-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+        <tr>
+            <td>P 10</td>
+            <td><input type="checkbox" id="calib-table-point10-enable-sensor-${i+1}" /></td>
+            <td>
+                <input type="number" id="calib-table-point10-raw-value-sensor-${i+1}" value=0 />
+            </td>
+            <td>
+                <input type="number" id="calib-table-point10-calib-value-sensor-${i+1}" value=0 />
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+o create new app copy the atService_XYZ.h and replace (Ctr + H) by the name of service you wanna dev

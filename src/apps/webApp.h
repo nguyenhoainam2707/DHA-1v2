@@ -1,0 +1,5834 @@
+// ⚠️ This file is auto-generated - DO NOT EDIT MANUALLY
+const char html[] PROGMEM = R"rawliteral(﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHA-1 Configuration Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: none;
+            width: 100%;
+            margin: 0;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            display: block;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .logo-section {
+            padding: 0 15px 30px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .logo-section h1 {
+            color: white;
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo-section .subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .brand-info {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .brand-icon {
+            font-size: 12px;
+        }
+
+        .brand-text {
+            color: #a5b4fc;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Simple RTC Display in Sidebar */
+        .rtc-simple-display {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .rtc-simple-display .rtc-time {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 3px;
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .rtc-simple-display .rtc-date {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* Change Password Styles */
+        .password-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            /* color: #ffffff; */
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(107, 152, 224, 0.3);
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .password-input::placeholder {
+            color: #64748b;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .password-strength.weak {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: block;
+        }
+
+        .password-strength.medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            display: block;
+        }
+
+        .password-strength.strong {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            display: block;
+        }
+
+        .change-password-btn {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .change-password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .change-password-btn:disabled {
+            background: #6b7280;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .password-requirements {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .password-requirements h4 {
+            color: #3b82f6;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .password-requirements ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .password-requirements li {
+            margin-bottom: 5px;
+        }
+
+        .nav-tabs {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 15px;
+            overflow-y: auto;
+            max-height: calc(100vh - 200px);
+        }
+
+        /* Custom scrollbar for nav-tabs */
+        .nav-tabs::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .nav-tabs::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-tab {
+            padding: 15px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            font-weight: 500;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            transform: translateX(5px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .nav-tab.active::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: #6366f1;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .nav-tab-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: #f8fafc;
+            margin-left: 280px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-header {
+            margin-bottom: 30px;
+        }
+
+        .content-header h2 {
+            font-size: 28px;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .content-header p {
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.4s ease;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .tab-content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .card-title-icon {
+            font-size: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: white;
+            color: #1e293b;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group input[readonly] {
+            background: #f1f5f9;
+            color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .checkbox-wrapper:hover {
+            background: #f1f5f9;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #6366f1;
+        }
+
+        .checkbox-wrapper label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .sensor-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .sensor-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .sensor-card-header {
+            font-size: 16px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-save:active {
+            transform: translateY(0);
+        }
+
+        .status-message {
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            animation: slideInRight 0.4s ease;
+            font-weight: 500;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .status-message.success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .status-message.error {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e0e7ff;
+            color: #6366f1;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -280px;
+                transition: left 0.3s ease;
+                z-index: 1000;
+            }
+
+            .sidebar.mobile-open {
+                left: 0;
+            }
+
+            .content-area {
+                margin-left: 0;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+                overflow-x: visible;
+                padding: 10px 0;
+                gap: 5px;
+            }
+
+            .nav-tab {
+                white-space: normal;
+                padding: 15px 20px;
+            }
+
+            .nav-tab.active::before {
+                display: block;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sensor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scrollbar styling */
+        .content-area::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-area::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .content-area::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .content-area::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-left: 4px solid #6366f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #1e40af;
+            font-size: 14px;
+        }
+
+        /* Dashboard specific styles */
+        #dashboard .sensor-card {
+            transition: all 0.3s ease;
+        }
+
+        #dashboard .sensor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        #dashboard input[readonly] {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* Status value colors */
+        .status-value-ok {
+            color: #10b981 !important;
+            font-weight: bold !important;
+        }
+
+        .status-value-warning {
+            color: #f59e0b !important;
+            font-weight: bold !important;
+        }
+
+        .status-value-error {
+            color: #ef4444 !important;
+            font-weight: bold !important;
+        }
+
+        /* Sensor Sub-tabs */
+        .sensor-tabs-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .sensor-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .sensor-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sensor-tab {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .sensor-tab:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .sensor-tab.active {
+            background: white;
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+            font-weight: 600;
+        }
+
+        .sensor-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .sensor-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        /* Horizontal Tabs for RS485 Slaves */
+        .horizontal-tabs {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 12px 12px 0 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 20px;
+        }
+
+        .horizontal-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .horizontal-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .horizontal-tab:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .horizontal-tab.active {
+            background: white;
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+            font-weight: 600;
+        }
+
+        .horizontal-tab-content {
+            display: none;
+        }
+
+        .horizontal-tab-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .tab-icon {
+            font-size: 16px;
+        }
+
+        /* Dashboard Horizontal Tabs */
+        .dashboard-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 12px 12px 0 0;
+            overflow-x: auto;
+            margin-bottom: 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .dashboard-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dashboard-tab {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px 18px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .dashboard-tab:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+
+        .dashboard-tab.active {
+            background: white;
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+            font-weight: 600;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-tab-content {
+            display: none;
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-tab-content.active {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .mobile-close-btn {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        .mobile-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Configuration Section Styles */
+        .config-section {
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-icon {
+            font-size: 16px;
+        }
+
+        .config-section .form-grid {
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Login Modal Styles */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .login-modal {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 16px;
+            padding: 40px;
+            width: 400px;
+            max-width: 90vw;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: loginSlideIn 0.4s ease-out;
+        }
+
+        @keyframes loginSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-input-group {
+            position: relative;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .login-input::placeholder {
+            color: #64748b;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-error {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .massoft-brand {
+            margin-top: 8px !important;
+            color: #6366f1 !important;
+            font-weight: 600 !important;
+            font-size: 11px !important;
+        }
+
+        /* MASSOFT Footer */
+        .massoft-footer {
+            margin-top: auto;
+            padding: 25px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        /* Content wrapper to push footer to bottom */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .massoft-footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .massoft-logo {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.3));
+        }
+
+        .massoft-info {
+            text-align: left;
+        }
+
+        .massoft-name {
+            color: #6366f1;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .massoft-tagline {
+            color: #94a3b8;
+            font-size: 12px;
+            margin: 2px 0 0 0;
+            font-weight: 400;
+        }
+
+        .massoft-copyright {
+            color: #64748b;
+            font-size: 11px;
+            margin: 0;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hide main content when login is shown */
+        .main-container.login-active {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-toggle {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+            }
+
+            .mobile-menu-toggle.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .mobile-close-btn {
+                display: block;
+            }
+
+            .content-area {
+                padding-top: 80px;
+            }
+
+            .login-modal {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            line-height: 1.4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Tooltip icon */
+        .tooltip-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            margin-left: 5px;
+            cursor: help;
+        }
+
+        .tooltip-icon:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* for dashboard */
+        .dashboard-tab-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dashboard-tab-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dashboard-horizontal-tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-horizontal-tab {
+            background: #f4f4f4;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .dashboard-horizontal-tab.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .dashboard-tab-content {
+            display: none;
+        }
+
+        .dashboard-tab-content.active {
+            display: block;
+        }
+
+        .dashboard-card {
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-card-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .dashboard-form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .dashboard-sensor-card {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .dashboard-sensor-card-header {
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .dashboard-content-header {
+            margin-bottom: 20px;
+        }
+        /* for sensor calibration point table*/
+        .calibration-table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            /* border: 1px solid rgba(99, 102, 241, 0.2); */
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            /* border-radius: 5px; */
+            padding: 8px;
+        }
+
+        .calibration-table input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 4px;
+        }
+
+        .calibration-table input[type="checkbox"] {
+            transform: scale(1.2);
+            cursor: pointer;
+            accent-color: #6366f1;
+        }
+        .calibration-table input:focus,
+        .calibration-table select:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Modal -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-modal">
+            <div class="login-header">
+                <h2><span>🔐</span> DHA-1 Login</h2>
+                <p>Enter your credentials to access the configuration portal</p>
+            </div>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="login-input-group">
+                    <input type="text" id="loginUsername" class="login-input" placeholder="Username" required>
+                </div>
+                <div class="login-input-group">
+                    <input type="password" id="loginPassword" class="login-input" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>🚀</span> Access Portal
+                </button>
+                <div id="loginError" class="login-error" style="display: none;"></div>
+            </form>
+            <div class="login-footer">
+                <p>🛡️ Secure access to DHA-1 Configuration Portal v1.0</p>
+                <p class="massoft-brand">© 2025 MASSOFT - Industrial IoT Solutions</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+
+    <div id="mainContainer" class="main-container login-active">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <button class="mobile-close-btn" onclick="closeMobileMenu()">×</button>
+            <div class="logo-section">
+                <h1> DHA-1 </h1>
+                <p class="subtitle">Configuration Portal v1.0</p>
+
+                <!-- RTC Display -->
+                <div class="rtc-simple-display">
+                    <div class="rtc-time" id="sidebar-rtc-time">--:--:--</div>
+                    <div class="rtc-date" id="sidebar-rtc-date">----/--/--</div>
+                </div>
+
+                <div class="brand-info">
+                    <span class="brand-icon">🏢</span>
+                    <span class="brand-text">Powered by MASSOFT</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <span>🔒</span>
+                    <span>Logout</span>
+                </button>
+            </div>
+
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="openTab('dashboard')">
+                    <span class="nav-tab-icon">📊</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('sensors')">
+                    <span class="nav-tab-icon">📡</span>
+                    <span>Sensors</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('4-20mA')">
+                    <span class="nav-tab-icon">⚡</span>
+                    <span>AI 4-20mA</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('io')">
+                    <span class="nav-tab-icon">🔌</span>
+                    <span>Digital I/O</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('rs485')">
+                    <span class="nav-tab-icon">🔗</span>
+                    <span>RS485 Protocol</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('mqtt')">
+                    <span class="nav-tab-icon">📨</span>
+                    <span>MQTT Settings</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('ftp')">
+                    <span class="nav-tab-icon">📤</span>
+                    <span>FTP Servers</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('rtc')">
+                    <span class="nav-tab-icon">🕐</span>
+                    <span>RTC Clock</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('lcd')">
+                    <span class="nav-tab-icon">🖥️</span>
+                    <span>LCD Display</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('device')">
+                    <span class="nav-tab-icon">📋</span>
+                    <span>Device Info</span>
+                </button>
+                <button class="nav-tab" onclick="openTab('changepassword')">
+                    <span class="nav-tab-icon">🔑</span>
+                    <span>Change Password</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="content-wrapper">
+            <!-- Dashboard Tab - Real-time Data Display -->
+            <div id="dashboard" class="tab-content active">
+                <div class="dashboard-content-header">
+                    <h2>📊 Real-time Dashboard</h2>
+                    <p>Monitor all sensor readings and device status in real-time</p>
+                </div>
+                <!-- ===================== Horizontal Tabs ===================== -->
+                <div class="dashboard-tabs">
+                    <button class="dashboard-tab active" onclick="openDashboardTab(event, 'dashboard-tab-sensor')">🌡️
+                        Sensor Readings</button>
+                    <button class="dashboard-tab" onclick="openDashboardTab(event, 'dashboard-tab-analog')">⚡Analog
+                        Input (4-20mA)</button>
+                    <button class="dashboard-tab" onclick="openDashboardTab(event, 'dashboard-tab-rs485')">📡RS485
+                        Data</button>
+                    <button class="dashboard-tab" onclick="openDashboardTab(event, 'dashboard-tab-dio')">💡Digital
+                        I/O</button>
+                    <button class="dashboard-tab" onclick="openDashboardTab(event, 'dashboard-tab-rtc')">🕐 Real-Time
+                        Clock</button>
+                    <button class="dashboard-tab" onclick="openDashboardTab(event, 'dashboard-tab-system')">🔋 System
+                        Status</button>
+                </div>
+
+                <!-- ===================== TAB CONTENT OF DASHBOARD ===================== -->
+                <div id="dashboard-tab-sensor" class="dashboard-tab-section active">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">🌡️</span> Sensor Readings
+                        </div> -->
+                        <!-- <div class="dashboard-sensor-grid"> -->
+                            <!-- <div class="card"> -->
+                                <div class="card-title">
+                                    <span class="card-title-icon">🌡️</span>
+                                    Sensor Readings
+                                </div>
+                                <div class="sensor-grid">
+                                    <div class="sensor-card" id="sensor-reading-1">
+                                        <div class="sensor-card-header">📍 Sensor 1</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-1" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-1" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-1" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-1" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-1" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-1" readonly value="None">
+                                        </div>
+
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-2">
+                                        <div class="sensor-card-header">📍 Sensor 2</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-2" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-2" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-2" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-2" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-2" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-2" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-3">
+                                        <div class="sensor-card-header">📍 Sensor 3</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-3" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-3" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-3" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-3" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-3" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-3" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-4">
+                                        <div class="sensor-card-header">📍 Sensor 4</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-4" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-4" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-4" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-4" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-4" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-4" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-5">
+                                        <div class="sensor-card-header">📍 Sensor 5</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-5" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-5" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-5" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-5" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-5" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-5" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-6">
+                                        <div class="sensor-card-header">📍 Sensor 6</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-6" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-6" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-6" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-6" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-6" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-6" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-7">
+                                        <div class="sensor-card-header">📍 Sensor 7</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-7" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-7" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-7" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-7" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-7" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-7" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-8">
+                                        <div class="sensor-card-header">📍 Sensor 8</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-8" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-8" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-8" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-8" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-8" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-8" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-9">
+                                        <div class="sensor-card-header">📍 Sensor 9</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-9" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-9" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-9" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-9" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-9" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-9" readonly value="None">
+                                        </div>
+                                    </div>
+                                    <div class="sensor-card" id="sensor-reading-10">
+                                        <div class="sensor-card-header">📍 Sensor 10</div>
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input type="text" id="sensor-name-10" readonly value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Raw Value:</label>
+                                            <input type="text" id="sensor-raw-10" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Calibrated Value:</label>
+                                            <input type="text" id="sensor-calib-10" readonly value="0.00">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status:</label>
+                                            <input type="text" id="sensor-status-10" readonly value="Normal">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Alarm:</label>
+                                            <input type="text" id="sensor-alarm-10" readonly value="None">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Warning:</label>
+                                            <input type="text" id="sensor-warning-10" readonly value="None">
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <div id="dashboard-tab-analog" class="dashboard-tab-section">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">⚡</span> Analog Input (4–20mA)
+                        </div> -->
+                        <!-- <div class="dashboard-form-grid"> -->
+                            <!-- <div class="card"> -->
+                                <div class="card-title">
+                                    <span class="card-title-icon">⚡</span>
+                                    Analog Input (4-20mA)
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Channel 1 - Raw ADC:</label>
+                                        <input type="text" id="ai-raw-1" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 1 - Voltage (V):</label>
+                                        <input type="text" id="ai-voltage-1" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 1 - Current (mA):</label>
+                                        <input type="text" id="ai-current-1" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 2 - Raw ADC:</label>
+                                        <input type="text" id="ai-raw-2" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 2 - Voltage (V):</label>
+                                        <input type="text" id="ai-voltage-2" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 2 - Current (mA):</label>
+                                        <input type="text" id="ai-current-2" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 3 - Raw ADC:</label>
+                                        <input type="text" id="ai-raw-3" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 3 - Voltage (V):</label>
+                                        <input type="text" id="ai-voltage-3" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 3 - Current (mA):</label>
+                                        <input type="text" id="ai-current-3" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 4 - Raw ADC:</label>
+                                        <input type="text" id="ai-raw-4" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 4 - Voltage (V):</label>
+                                        <input type="text" id="ai-voltage-4" readonly value="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Channel 4 - Current (mA):</label>
+                                        <input type="text" id="ai-current-4" readonly value="0.00">
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <div id="dashboard-tab-rs485" class="dashboard-tab-section">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">📡</span> RS485 Communication Data
+                        </div> -->
+                        <!-- <div class="card"> -->
+                            <div class="card-title">
+                                <span class="card-title-icon">📡</span>
+                                RS485 Communication Data
+                            </div>
+
+                            <!-- RS485 Channel Tabs -->
+                            <div class="horizontal-tabs" style="margin-bottom: 20px;">
+                                <button class="horizontal-tab active"
+                                    onclick="openHorizontalTab(event, 'rs485-dash-ch1', 'rs485-dash')">
+                                    <span class="tab-icon">📡</span>
+                                    <span>Channel 1</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-dash-ch2', 'rs485-dash')">
+                                    <span class="tab-icon">📡</span>
+                                    <span>Channel 2</span>
+                                </button>
+                            </div>
+
+                            <!-- RS485 Channel 1 Data -->
+                            <div id="rs485-dash-ch1" class="horizontal-tab-content active">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Slave 1 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s1-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 1 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s1-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 1 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s1-resp" readonly value="0">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Slave 2 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s2-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 2 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s2-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 2 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s2-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s3-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s3-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s3-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s4-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s4-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s4-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s5-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s5-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s5-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s6-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s6-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s6-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s7-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s7-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s7-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s8-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s8-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s8-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s9-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s9-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s9-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s10-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch1-s10-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - Response:</label>
+                                        <input type="text" id="rs485-ch1-s10-resp" readonly value="0">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- RS485 Channel 2 Data -->
+                            <div id="rs485-dash-ch2" class="horizontal-tab-content">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Slave 1 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s1-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 1 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s1-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 1 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s1-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 2 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s2-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 2 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s2-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 2 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s2-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s3-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s3-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 3 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s3-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s4-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s4-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 4 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s4-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s5-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s5-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 5 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s5-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s6-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s6-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 6 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s6-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s7-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s7-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 7 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s7-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s8-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s8-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 8 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s8-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s9-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s9-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 9 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s9-resp" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - High 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s10-high" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - Low 16bit:</label>
+                                        <input type="text" id="rs485-ch2-s10-low" readonly value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Slave 10 - Response:</label>
+                                        <input type="text" id="rs485-ch2-s10-resp" readonly value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <div id="dashboard-tab-dio" class="dashboard-tab-section">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">💡</span> Digital I/O Status
+                        </div> -->
+                        <!-- <div class="dashboard-form-grid"> -->
+                            <!-- <div class="card"> -->
+                                <div class="card-title">
+                                    <span class="card-title-icon">💡</span>
+                                    Digital I/O Status
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Digital Input 1:</label>
+                                        <input type="text" id="di-status-1" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Input 2:</label>
+                                        <input type="text" id="di-status-2" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Input 3:</label>
+                                        <input type="text" id="di-status-3" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Input 4:</label>
+                                        <input type="text" id="di-status-4" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Output 1:</label>
+                                        <input type="text" id="do-status-1" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Output 2:</label>
+                                        <input type="text" id="do-status-2" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Output 3:</label>
+                                        <input type="text" id="do-status-3" readonly value="OFF">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Digital Output 4:</label>
+                                        <input type="text" id="do-status-4" readonly value="OFF">
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <div id="dashboard-tab-rtc" class="dashboard-tab-section">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">🕐</span> Real-Time Clock
+                        </div> -->
+                        <!-- <div class="dashboard-form-grid"> -->
+                            <!-- <div class="card"> -->
+                                <div class="card-title">
+                                    <span class="card-title-icon">🕐</span>
+                                    Real-Time Clock
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Date:</label>
+                                        <input type="text" id="rtc-date" readonly value="--/--/----">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Time:</label>
+                                        <input type="text" id="rtc-time" readonly value="--:--:--">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Day of Week:</label>
+                                        <input type="text" id="rtc-day-of-week" readonly value="--">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Temperature (°C):</label>
+                                        <input type="text" id="rtc-temperature" readonly value="0.0">
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+
+                <div id="dashboard-tab-system" class="dashboard-tab-section">
+                    <div class="dashboard-card">
+                        <!-- <div class="dashboard-card-title">
+                            <span class="dashboard-card-title-icon">🔋</span> System Status
+                        </div> -->
+                        <!-- <div class="dashboard-form-grid"> -->
+                            <!-- <div class="card"> -->
+                                <div class="card-title">
+                                    <span class="card-title-icon">🔋</span>
+                                    System Status
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>SIM Status:</label>
+                                        <input type="text" id="system-status-sim" readonly value="Not Ready">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MQTT Connection:</label>
+                                        <input type="text" id="system-status-mqtt" readonly value="Disconnected">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>FTP Connection:</label>
+                                        <input type="text" id="system-status-ftp" readonly value="Disconnected">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>SD Card:</label>
+                                        <input type="text" id="system-status-sdcard" readonly value="Not Available">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Uptime:</label>
+                                        <input type="text" id="system-uptime" readonly value="Not Available">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Free Heap:</label>
+                                        <input type="text" id="system-free-heap" readonly value="Not Available">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Client Number:</label>
+                                        <input type="text" id="system-client-number" readonly value="Not Available">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>IP:</label>
+                                        <input type="text" id="system-ip-address" readonly value="Not Available">
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Device Info Tab -->
+            <div id="device" class="tab-content">
+                <div class="content-header">
+                    <h2>Device Information
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltiptext">Configure device identity, display settings, and view system
+                                information</span>
+                        </span>
+                    </h2>
+                    <p>Configure device identity and display settings</p>
+                </div>
+
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">📋</span>
+                        <span>Device Identity</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Device Name
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltiptext">Enter a unique name to identify this device</span>
+                                </span>
+                            </label>
+                            <input type="text" id="device_name" value="DHA-1">
+                        </div>
+                        <div class="form-group">
+                            <label>Device ID
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltiptext">Unique identifier for this device in the network</span>
+                                </span>
+                            </label>
+                            <input type="text" id="device_id" value="DHA-100001">
+                        </div>
+                        <div class="form-group">
+                            <label>Sub ID
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltiptext">Sub-identifier for device grouping or
+                                        categorization</span>
+                                </span>
+                            </label>
+                            <input type="text" id="sub_id" value="0001">
+                        </div>
+                        <div class="form-group">
+                            <label>Location X</label>
+                            <input type="text" id="location_x" value="11.1744424">
+                        </div>
+                        <div class="form-group">
+                            <label>Location Y</label>
+                            <input type="text" id="location_y" value="106.1366673">
+                        </div>
+                        <div class="form-group">
+                            <label>Area</label>
+                            <input type="text" id="area" value="TP. Ho Chi Minh">
+                        </div>
+                        <div class="form-group">
+                            <label>Device Type</label>
+                            <input type="text" id="device_type" value="Nước ngầm">
+                        </div>
+                        <div class="form-group">
+                            <label>Firmware Version</label>
+                            <input type="text" id="firmware_version" value="v1.0.1" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LCD Display Tab -->
+            <div id="lcd" class="tab-content">
+                <div class="content-header">
+                    <h2>LCD Display Configuration
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltiptext">Configure LCD display settings and appearance options</span>
+                        </span>
+                    </h2>
+                    <p>Configure LCD display settings and behavior</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">💻</span>
+                        <span>LCD Display Settings</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="lcd_enable" checked>
+                            <label for="lcd_enable">Enable LCD Display</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="lcd_backlight_enable" checked>
+                            <label for="lcd_backlight_enable">Enable LCD Backlight</label>
+                        </div>
+                        <div class="form-group">
+                            <label>LCD Refresh Rate (seconds)</label>
+                            <input type="number" id="lcd_refresh_rate" value="1" min="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sensors Tab -->
+            <div id="sensors" class="tab-content">
+                <div class="content-header">
+                    <h2>Sensor Configuration</h2>
+                    <p>Configure up to 10 sensors with various protocols</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+
+                <!-- Sensor Sub-tabs -->
+                <div class="sensor-tabs-container">
+                    <div class="sensor-tabs">
+                        <button class="sensor-tab active" onclick="openSensorTab(0)">Sensor 1</button>
+                        <button class="sensor-tab" onclick="openSensorTab(1)">Sensor 2</button>
+                        <button class="sensor-tab" onclick="openSensorTab(2)">Sensor 3</button>
+                        <button class="sensor-tab" onclick="openSensorTab(3)">Sensor 4</button>
+                        <button class="sensor-tab" onclick="openSensorTab(4)">Sensor 5</button>
+                        <button class="sensor-tab" onclick="openSensorTab(5)">Sensor 6</button>
+                        <button class="sensor-tab" onclick="openSensorTab(6)">Sensor 7</button>
+                        <button class="sensor-tab" onclick="openSensorTab(7)">Sensor 8</button>
+                        <button class="sensor-tab" onclick="openSensorTab(8)">Sensor 9</button>
+                        <button class="sensor-tab" onclick="openSensorTab(9)">Sensor 10</button>
+                    </div>
+                    <div id="sensors-container"></div>
+                </div>
+            </div>
+
+            <!-- Analog Input Tab -->
+            <div id="4-20mA" class="tab-content">
+                <div class="content-header">
+                    <h2>AI 4-20mA</h2>
+                    <p>Configure analog input channels</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">📊</span>
+                        <span>Analog Input (AI) - 4-20mA</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>AI Refresh Rate (seconds)</label>
+                            <input type="number" id="ai_refresh_rate" value="1" min="1">
+                        </div>
+                    </div>
+                    <div class="form-grid" style="margin-top: 15px;">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ai_ch1" checked>
+                            <label for="ai_ch1">AI Channel 1</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ai_ch2" checked>
+                            <label for="ai_ch2">AI Channel 2</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ai_ch3" checked>
+                            <label for="ai_ch3">AI Channel 3</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ai_ch4" checked>
+                            <label for="ai_ch4">AI Channel 4</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Digital I/O Tab -->
+            <div id="io" class="tab-content">
+                <div class="content-header">
+                    <h2>Digital I/O Configuration</h2>
+                    <p>Configure digital input and digital outputs</p>
+
+                    <!-- Digital I/O Sub-tabs -->
+                    <div class="horizontal-tabs">
+                        <button class="horizontal-tab active" onclick="openHorizontalTab(event, 'io-do-tab', 'io')">
+                            <span class="tab-icon">🔴</span>
+                            <span>Digital Output (DO)</span>
+                        </button>
+                        <button class="horizontal-tab" onclick="openHorizontalTab(event, 'io-di-tab', 'io')">
+                            <span class="tab-icon">🟢</span>
+                            <span>Digital Input (DI)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Configure digital I/O channels to control outputs or monitor inputs based
+                    on sensor states, MQTT commands, or direct control.
+                </div>
+
+                <div class="content-body">
+                    <!-- Digital Output Tab Content -->
+                    <div id="io-do-tab" class="horizontal-tab-content active">
+                        <!-- DO General Settings -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">⚙️</span>
+                                <span>General Settings</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>DO Refresh Rate (seconds)</label>
+                                    <input type="number" id="do_refresh_rate" value="1" min="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DO Channel 1 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔴</span>
+                                <span>DO Channel 1</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="do_enable_0" checked>
+                                        <label for="do_enable_0">Enable Channel 1</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Protocol</label>
+                                    <select id="do_protocol_0">
+                                        <option value="0">Sensor Schmitt Trigger</option>
+                                        <option value="1">Sensor State</option>
+                                        <option value="2">MQTT</option>
+                                        <option value="3">Input Digital</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Sensor Index</label>
+                                    <input type="number" id="do_schmitt_sensor_0" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Value Type</label>
+                                    <select id="do_schmitt_valuetype_0">
+                                        <option value="0">Raw Value</option>
+                                        <option value="1">Calibrated Value</option>
+                                        <option value="2">Sum Value</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Upper Threshold</label>
+                                    <input type="number" id="do_schmitt_upper_0" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Lower Threshold</label>
+                                    <input type="number" id="do_schmitt_lower_0" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="do_control_sensor_0" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="do_control_state_0">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Digital Input</label>
+                                    <select id="do_control_di_0">
+                                        <option value="0">DI Channel 1</option>
+                                        <option value="1">DI Channel 2</option>
+                                        <option value="2">DI Channel 3</option>
+                                        <option value="3">DI Channel 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DO Channel 2 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔴</span>
+                                <span>DO Channel 2</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="do_enable_1" checked>
+                                        <label for="do_enable_1">Enable Channel 2</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Protocol</label>
+                                    <select id="do_protocol_1">
+                                        <option value="0">Sensor Schmitt Trigger</option>
+                                        <option value="1">Sensor State</option>
+                                        <option value="2">MQTT</option>
+                                        <option value="3">Input Digital</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Sensor Index</label>
+                                    <input type="number" id="do_schmitt_sensor_1" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Value Type</label>
+                                    <select id="do_schmitt_valuetype_1">
+                                        <option value="0">Raw Value</option>
+                                        <option value="1">Calibrated Value</option>
+                                        <option value="2">Sum Value</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Upper Threshold</label>
+                                    <input type="number" id="do_schmitt_upper_1" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Lower Threshold</label>
+                                    <input type="number" id="do_schmitt_lower_1" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="do_control_sensor_1" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="do_control_state_1">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Digital Input</label>
+                                    <select id="do_control_di_1">
+                                        <option value="0">DI Channel 1</option>
+                                        <option value="1">DI Channel 2</option>
+                                        <option value="2">DI Channel 3</option>
+                                        <option value="3">DI Channel 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DO Channel 3 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔴</span>
+                                <span>DO Channel 3</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="do_enable_2" checked>
+                                        <label for="do_enable_2">Enable Channel 3</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Protocol</label>
+                                    <select id="do_protocol_2">
+                                        <option value="0">Sensor Schmitt Trigger</option>
+                                        <option value="1">Sensor State</option>
+                                        <option value="2">MQTT</option>
+                                        <option value="3">Input Digital</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Sensor Index</label>
+                                    <input type="number" id="do_schmitt_sensor_2" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Value Type</label>
+                                    <select id="do_schmitt_valuetype_2">
+                                        <option value="0">Raw Value</option>
+                                        <option value="1">Calibrated Value</option>
+                                        <option value="2">Sum Value</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Upper Threshold</label>
+                                    <input type="number" id="do_schmitt_upper_2" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Lower Threshold</label>
+                                    <input type="number" id="do_schmitt_lower_2" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="do_control_sensor_2" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="do_control_state_2">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Digital Input</label>
+                                    <select id="do_control_di_2">
+                                        <option value="0">DI Channel 1</option>
+                                        <option value="1">DI Channel 2</option>
+                                        <option value="2">DI Channel 3</option>
+                                        <option value="3">DI Channel 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DO Channel 4 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔴</span>
+                                <span>DO Channel 4</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="do_enable_3" checked>
+                                        <label for="do_enable_3">Enable Channel 4</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Protocol</label>
+                                    <select id="do_protocol_3">
+                                        <option value="0">Sensor Schmitt Trigger</option>
+                                        <option value="1">Sensor State</option>
+                                        <option value="2">MQTT</option>
+                                        <option value="3">Input Digital</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Sensor Index</label>
+                                    <input type="number" id="do_schmitt_sensor_3" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Value Type</label>
+                                    <select id="do_schmitt_valuetype_3">
+                                        <option value="0">Raw Value</option>
+                                        <option value="1">Calibrated Value</option>
+                                        <option value="2">Sum Value</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Upper Threshold</label>
+                                    <input type="number" id="do_schmitt_upper_3" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Schmitt Trigger Lower Threshold</label>
+                                    <input type="number" id="do_schmitt_lower_3" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="do_control_sensor_3" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="do_control_state_3">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Digital Input</label>
+                                    <select id="do_control_di_3">
+                                        <option value="0">DI Channel 1</option>
+                                        <option value="1">DI Channel 2</option>
+                                        <option value="2">DI Channel 3</option>
+                                        <option value="3">DI Channel 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Input Tab Content -->
+                    <div id="io-di-tab" class="horizontal-tab-content">
+                        <!-- DI General Settings -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">⚙️</span>
+                                <span>General Settings</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>DI Refresh Rate (seconds)</label>
+                                    <input type="number" id="di_refresh_rate" value="1" min="1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DI Channel 1 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🟢</span>
+                                <span>DI Channel 1</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_enable_0" checked>
+                                        <label for="di_enable_0">Enable Channel 1</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_control_enable_0">
+                                        <label for="di_control_enable_0">Control Sensor State Enable</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="di_control_sensor_0" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="di_control_state_0">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DI Channel 2 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🟢</span>
+                                <span>DI Channel 2</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_enable_1" checked>
+                                        <label for="di_enable_1">Enable Channel 2</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_control_enable_1">
+                                        <label for="di_control_enable_1">Control Sensor State Enable</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="di_control_sensor_1" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="di_control_state_1">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DI Channel 3 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🟢</span>
+                                <span>DI Channel 3</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_enable_2" checked>
+                                        <label for="di_enable_2">Enable Channel 3</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_control_enable_2">
+                                        <label for="di_control_enable_2">Control Sensor State Enable</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="di_control_sensor_2" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="di_control_state_2">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DI Channel 4 Configuration -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🟢</span>
+                                <span>DI Channel 4</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_enable_3" checked>
+                                        <label for="di_enable_3">Enable Channel 4</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="di_control_enable_3">
+                                        <label for="di_control_enable_3">Control Sensor State Enable</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor Index</label>
+                                    <input type="number" id="di_control_sensor_3" value="0" min="0" max="9">
+                                </div>
+                                <div class="form-group">
+                                    <label>Control Sensor State</label>
+                                    <select id="di_control_state_3">
+                                        <option value="0">Normal</option>
+                                        <option value="1">Calibration</option>
+                                        <option value="2">Error</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RS485 Tab -->
+            <div id="rs485" class="tab-content">
+                <div class="content-header">
+                    <h2>RS485 Protocol Configuration</h2>
+                    <p>Configure RS485 serial communication parameters</p>
+                    <!-- RS485 Horizontal Tabs -->
+                    <div class="horizontal-tabs">
+                        <button class="horizontal-tab active"
+                            onclick="openHorizontalTab(event, 'rs485-ch1-tab', 'rs485')">
+                            <span class="tab-icon">📡</span>
+                            <span>Channel 1 (10 Slaves)</span>
+                        </button>
+                        <button class="horizontal-tab" onclick="openHorizontalTab(event, 'rs485-ch2-tab', 'rs485')">
+                            <span class="tab-icon">📡</span>
+                            <span>Channel 2 (10 Slaves)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+
+                <div class="content-body">
+                    <!-- RS485 Channel 1 Tab -->
+                    <div id="rs485-ch1-tab" class="horizontal-tab-content active">
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">📡</span>
+                                <span>RS485 Channel 1 Configuration</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="rs485_ch1_enable" checked>
+                                    <label for="rs485_ch1_enable">Enable RS485 Channel 1</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Channel 1 Slaves -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔌</span>
+                                <span>Channel 1 Slave Devices</span>
+                            </div>
+
+                            <!-- Channel 1 Slave Tabs -->
+                            <div class="horizontal-tabs">
+                                <button class="horizontal-tab active"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave1-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 1</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave2-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 2</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave3-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 3</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave4-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 4</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave5-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 5</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave6-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 6</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave7-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 7</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave8-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 8</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave9-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 9</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch1-slave10-tab', 'rs485-ch1')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 10</span>
+                                </button>
+                            </div>
+
+                            <div id="rs485-ch1-slaves-container">
+                                <!-- Slaves 1-10 will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RS485 Channel 2 Tab -->
+                    <div id="rs485-ch2-tab" class="horizontal-tab-content">
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">📡</span>
+                                <span>RS485 Channel 2 Configuration</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="checkbox-wrapper">
+                                    <input type="checkbox" id="rs485_ch2_enable" checked>
+                                    <label for="rs485_ch2_enable">Enable RS485 Channel 2</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Channel 2 Slaves -->
+                        <div class="card">
+                            <div class="card-title">
+                                <span class="card-title-icon">🔌</span>
+                                <span>Channel 2 Slave Devices</span>
+                            </div>
+
+                            <!-- Channel 2 Slave Tabs -->
+                            <div class="horizontal-tabs">
+                                <button class="horizontal-tab active"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave1-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 1</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave2-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 2</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave3-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 3</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave4-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 4</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave5-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 5</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave6-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 6</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave7-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 7</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave8-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 8</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave9-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 9</span>
+                                </button>
+                                <button class="horizontal-tab"
+                                    onclick="openHorizontalTab(event, 'rs485-ch2-slave10-tab', 'rs485-ch2')">
+                                    <span class="tab-icon">🔗</span>
+                                    <span>Slave 10</span>
+                                </button>
+                            </div>
+
+                            <div id="rs485-ch2-slaves-container">
+                                <!-- Slaves 1-10 will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MQTT Tab -->
+            <div id="mqtt" class="tab-content">
+                <div class="content-header">
+                    <h2>MQTT Settings</h2>
+                    <p>Configure MQTT broker connection and topics</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">🔧</span>
+                        <span>MQTT Features</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="mqtt_public_enable">
+                            <label for="mqtt_public_enable">Enable MQTT Publish</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="mqtt_subscribe_enable">
+                            <label for="mqtt_subscribe_enable">Enable MQTT Subscribe</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">🌐</span>
+                        <span>Broker Connection</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>MQTT Broker Address</label>
+                            <input type="text" id="mqtt_broker" value="broker.emqx.io">
+                        </div>
+                        <div class="form-group">
+                            <label>Port Number</label>
+                            <input type="number" id="mqtt_port" value="1883">
+                        </div>
+                        <div class="form-group">
+                            <label>Client ID</label>
+                            <input type="text" id="mqtt_client_id" value="DHA-1">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="mqtt_username" value="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" id="mqtt_password" value="password">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Retry Attempts</label>
+                            <input type="number" id="mqtt_max_retry_times" value="3" min="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">📮</span>
+                        <span>Topics & Intervals</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Publish Topic</label>
+                            <input type="text" id="mqtt_pub_topic" value="at/dha-1/data">
+                        </div>
+                        <div class="form-group">
+                            <label>Subscribe Topic</label>
+                            <input type="text" id="mqtt_sub_topic" value="at/dha-1/command">
+                        </div>
+                        <div class="form-group">
+                            <label>Sending Interval (seconds)</label>
+                            <input type="number" id="mqtt_sending_interval" value="3" min="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FTP Tab -->
+            <div id="ftp" class="tab-content">
+                <div class="content-header">
+                    <h2>FTP Server Configuration</h2>
+                    <p>Configure up to 4 FTP servers for data logging</p>
+
+                    <!-- FTP Horizontal Tabs -->
+                    <div class="horizontal-tabs">
+                        <button class="horizontal-tab active"
+                            onclick="openHorizontalTab(event, 'ftp-server1-tab', 'ftp')">
+                            <span class="tab-icon">📤</span>
+                            <span>Server 1</span>
+                        </button>
+                        <button class="horizontal-tab" onclick="openHorizontalTab(event, 'ftp-server2-tab', 'ftp')">
+                            <span class="tab-icon">📤</span>
+                            <span>Server 2</span>
+                        </button>
+                        <button class="horizontal-tab" onclick="openHorizontalTab(event, 'ftp-server3-tab', 'ftp')">
+                            <span class="tab-icon">📤</span>
+                            <span>Server 3</span>
+                        </button>
+                        <button class="horizontal-tab" onclick="openHorizontalTab(event, 'ftp-server4-tab', 'ftp')">
+                            <span class="tab-icon">📤</span>
+                            <span>Server 4</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="content-body">
+                    <div class="info-box">
+                        💡 <strong>Path Variables:</strong> Use %YYYY%, %MM%, %DD%, %HH%, %MM%, %SS% for dynamic
+                        date/time in paths and filenames
+                    </div>
+                    <div id="ftp-container"></div>
+                </div>
+            </div>
+
+            <!-- RTC Tab -->
+            <div id="rtc" class="tab-content">
+                <div class="content-header">
+                    <h2>RTC Clock Configuration
+                        <span class="tooltip">
+                            <span class="tooltip-icon">?</span>
+                            <span class="tooltiptext">Configure real-time clock settings for accurate date and time
+                                tracking</span>
+                        </span>
+                    </h2>
+                    <p>Set real-time clock date and time</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">⚙️</span>
+                        <span>RTC Module Setup</span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="rtc_setup_enable" checked>
+                            <label for="rtc_setup_enable">Set up time for RTC module
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltiptext">Enable this option to configure and synchronize the RTC
+                                        module time settings</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">⏰</span>
+                        <span>Time Settings</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Hour (0-23)</label>
+                            <input type="number" id="rtc_hour" value="10" min="0" max="23">
+                        </div>
+                        <div class="form-group">
+                            <label>Minute (0-59)</label>
+                            <input type="number" id="rtc_minute" value="10" min="0" max="59">
+                        </div>
+                        <div class="form-group">
+                            <label>Second (0-59)</label>
+                            <input type="number" id="rtc_second" value="10" min="0" max="59">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">📅</span>
+                        <span>Date Settings</span>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Day (1-31)</label>
+                            <input type="number" id="rtc_day" value="10" min="1" max="31">
+                        </div>
+                        <div class="form-group">
+                            <label>Month (1-12)</label>
+                            <input type="number" id="rtc_month" value="10" min="1" max="12">
+                        </div>
+                        <div class="form-group">
+                            <label>Year (2000-2100)</label>
+                            <input type="number" id="rtc_year" value="2020" min="2000" max="2100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">🌐</span>
+                        <span>NTP Configuration</span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="rtc_auto_update_from_ntp">
+                            <label for="rtc_auto_update_from_ntp">Auto update time from NTP server
+                                <span class="tooltip">
+                                    <span class="tooltip-icon">?</span>
+                                    <span class="tooltiptext">Automatically synchronize RTC time with NTP server when internet connection is available</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>NTP Server Address</label>
+                        <input type="text" id="rtc_ntp_server" placeholder="pool.ntp.org">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Tab -->
+            <div id="changepassword" class="tab-content">
+                <div class="content-header">
+                    <h2>Change Password</h2>
+                    <p>Update your login password for enhanced security</p>
+                </div>
+                <div class="info-box">
+                    💡 <strong>Tip:</strong> Each sensor can use ADC 4-20mA or RS485 protocols. Configure protocol and
+                    calibration settings for accurate readings.
+                </div>
+
+                <div class="card">
+                    <div class="card-title">
+                        <span class="card-title-icon">🔑</span>
+                        <span>Password Management</span>
+                    </div>
+
+                    <div class="password-form">
+                        <form onsubmit="handlePasswordChange(event)">
+                            <div class="password-input-group">
+                                <label for="currentPassword"
+                                    style="color: #ffffff; margin-bottom: 8px; display: block;">Current Password</label>
+                                <input type="password" id="currentPassword" class="password-input"
+                                    placeholder="Enter your current password" required>
+                            </div>
+
+                            <div class="password-input-group">
+                                <label for="newPassword" style="color: #ffffff; margin-bottom: 8px; display: block;">New
+                                    Password</label>
+                                <input type="password" id="newPassword" class="password-input"
+                                    placeholder="Enter your new password" required oninput="checkPasswordStrength()">
+                                <div id="passwordStrength" class="password-strength"></div>
+                            </div>
+
+                            <div class="password-input-group">
+                                <label for="confirmPassword"
+                                    style="color: #ffffff; margin-bottom: 8px; display: block;">Confirm New
+                                    Password</label>
+                                <input type="password" id="confirmPassword" class="password-input"
+                                    placeholder="Confirm your new password" required oninput="checkPasswordMatch()">
+                                <div id="passwordMatch" class="password-strength" style="display: none;"></div>
+                            </div>
+
+                            <div class="password-requirements">
+                                <h4>🛡️ Password Requirements:</h4>
+                                <ul>
+                                    <li>At least 8 characters long</li>
+                                    <li>Contains at least one uppercase letter</li>
+                                    <li>Contains at least one lowercase letter</li>
+                                    <li>Contains at least one number</li>
+                                    <li>Contains at least one special character (!@#$%^&*)</li>
+                                </ul>
+                            </div>
+
+                            <button type="submit" id="changePasswordBtn" class="change-password-btn" disabled>
+                                <span>🔐</span> Change Password
+                            </button>
+
+                            <div id="passwordChangeMessage" class="login-error"
+                                style="display: none; margin-top: 15px;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <button id="save-config-btn" class="btn-save" onclick="saveConfig()">
+                <span>💾</span>
+                <span>Save Configuration to SD Card</span>
+            </button>
+
+            <div id="status-message" class="status-message"></div>
+            </div>
+
+            <!-- MASSOFT Footer -->
+            <div class="massoft-footer">
+                <div class="massoft-footer-content">
+                    <span class="massoft-logo">🏢</span>
+                    <div class="massoft-info">
+                        <p class="massoft-name">MASSOFT</p>
+                        <p class="massoft-tagline">Industrial IoT & Automation Solutions</p>
+                    </div>
+                </div>
+                <p class="massoft-copyright">© 2025 MASSOFT. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize sensors
+        function initSensors() {
+            const container = document.getElementById('sensors-container');
+
+            for (let i = 0; i < 10; i++) {
+                const sensorContent = document.createElement('div');
+                sensorContent.className = `sensor-content ${i === 0 ? 'active' : ''}`;
+                sensorContent.id = `sensor-content-${i}`;
+
+                sensorContent.innerHTML = `
+                        <div class="sensor-card-header">
+                            📡 Sensor ${i + 1} Configuration
+                        </div>
+                        
+                        <!-- General Information Section -->
+                        <div class="config-section">
+                            <div class="section-title">
+                                <span class="section-icon">ℹ️</span>
+                                <span>General Information</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="sensor_enable_${i}">
+                                        <label for="sensor_enable_${i}">Enable Sensor ${i + 1}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sensor Name</label>
+                                    <input type="text" id="sensor_name_${i}" value="Sensor ${i + 1}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Measurement Unit</label>
+                                    <input type="text" id="sensor_unit_${i}" value="Unit ${i + 1}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Read Interval (milliseconds)</label>
+                                    <input type="number" id="sensor_interval_${i}" value="1000" min="100">
+                                </div>
+                                <div class="form-group">
+                                    <label>Communication Protocol</label>
+                                    <select id="sensor_protocol_${i}" onchange="updateRS485SlaveOptions(${i})">
+                                        <option value="0">ADC 4-20mA CH1</option>
+                                        <option value="1">ADC 4-20mA CH2</option>
+                                        <option value="2">ADC 4-20mA CH3</option>
+                                        <option value="3">ADC 4-20mA CH4</option>
+                                        <option value="4">RS485 CH1</option>
+                                        <option value="5">RS485 CH2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>State Reading Protocol</label>
+                                    <select id="sensor_state_protocol_${i}">
+                                        <option value="0">Auto</option>
+                                        <option value="1">Digital Input</option>
+                                        <option value="2">RS485</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="sensor_rs485_slave_label_${i}">RS-485 Slave Index</label>
+                                    <select id="sensor_rs485_slave_${i}" disabled>
+                                        <option value="0">Not applicable for ADC</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Data Type</label>
+                                    <select id="sensor_data_type_${i}">
+                                        <option value="0">UINT16</option>
+                                        <option value="1">INT16</option>
+                                        <option value="2">UINT32</option>
+                                        <option value="3">INT32</option>
+                                        <option value="4">FLOAT (Big Endian)</option>
+                                        <option value="5">FLOAT (Big Endian Swapped)</option>
+                                        <option value="6">FLOAT (Little Endian)</option>
+                                        <option value="7">FLOAT (Little Endian Swapped)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sensor ID</label>
+                                    <select id="sensor_id_${i}">
+                                        <option value="1">Sensor 1</option>
+                                        <option value="2">Sensor 2</option>
+                                        <option value="3">Sensor 3</option>
+                                        <option value="4">Sensor 4</option>
+                                        <option value="5">Sensor 5</option>
+                                        <option value="6">Sensor 6</option>
+                                        <option value="7">Sensor 7</option>
+                                        <option value="8">Sensor 8</option>
+                                        <option value="9">Sensor 9</option>
+                                        <option value="10">Sensor 10</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calibration Section -->
+                        <div class="config-section">
+                            <div class="section-title">
+                                <span class="section-icon">📐</span>
+                                <span>Calibration</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Calibration Function</label>
+                                    <select id="sensor_calibration_function_${i}">
+                                        <option value="0">Linear (y = A + Bx)</option>
+                                        <option value="1">Quadratic (y = A + Bx + Cx^2)</option>
+                                        <option value="2">Cubic (y = A + Bx + Cx^2 + Dx^3)</option>
+                                        <option value="3">Point Table</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Index A</label>
+                                    <input type="number" id="sensor_index_a_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Index B</label>
+                                    <input type="number" id="sensor_index_b_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Index C</label>
+                                    <input type="number" id="sensor_index_c_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Index D</label>
+                                    <input type="number" id="sensor_index_d_${i}" value="0" step="0.01">
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <h3>Sensor ${i+1} Calibration Point Table</h3>
+                                <table class="calibration-table">
+                                    <tr>
+                                        <th>Point</th>
+                                        <th>Enable</th>
+                                        <th>Raw Value</th>
+                                        <th>Calib Value</th>
+                                    </tr>
+                                    <tr>
+                                        <td>P 1</td>
+                                        <td><input type="checkbox" id="calib-table-point1-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point1-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point1-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 2</td>
+                                        <td><input type="checkbox" id="calib-table-point2-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point2-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point2-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 3</td>
+                                        <td><input type="checkbox" id="calib-table-point3-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point3-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point3-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 4</td>
+                                        <td><input type="checkbox" id="calib-table-point4-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point4-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point4-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 5</td>
+                                        <td><input type="checkbox" id="calib-table-point5-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point5-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point5-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 6</td>
+                                        <td><input type="checkbox" id="calib-table-point6-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point6-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point6-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 7</td>
+                                        <td><input type="checkbox" id="calib-table-point7-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point7-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point7-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 8</td>
+                                        <td><input type="checkbox" id="calib-table-point8-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point8-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point8-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 9</td>
+                                        <td><input type="checkbox" id="calib-table-point9-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point9-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point9-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 10</td>
+                                        <td><input type="checkbox" id="calib-table-point10-enable-sensor-${i}" /></td>
+                                        <td>
+                                            <input type="number" id="calib-table-point10-raw-value-sensor-${i}" value=0 />
+                                        </td>
+                                        <td>
+                                            <input type="number" id="calib-table-point10-calib-value-sensor-${i}" value=0 />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Error Section -->
+                        <div class="config-section">
+                            <div class="section-title">
+                                <span class="section-icon">⚠️</span>
+                                <span>Error</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="sensor_error_enable_${i}">
+                                        <label for="sensor_error_enable_${i}">Enable Sensor Error</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Raw Error Lower Threshold</label>
+                                    <input type="number" id="sensor_raw_error_lower_threshold_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Raw Error Upper Threshold</label>
+                                    <input type="number" id="sensor_raw_error_upper_threshold_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Calib Error Lower Threshold</label>
+                                    <input type="number" id="sensor_calib_error_lower_threshold_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Calib Error Upper Threshold</label>
+                                    <input type="number" id="sensor_calib_error_upper_threshold_${i}" value="0" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Limitation Section -->
+                        <div class="config-section">
+                            <div class="section-title">
+                                <span class="section-icon">🔒</span>
+                                <span>Limitation</span>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" id="sensor_limit_enable_${i}">
+                                        <label for="sensor_limit_enable_${i}">Enable Sensor Limit</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Lower Limit Threshold</label>
+                                    <input type="number" id="sensor_lower_limit_threshold_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Lower Limit Noise</label>
+                                    <input type="number" id="sensor_lower_limit_noise_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Upper Limit Threshold</label>
+                                    <input type="number" id="sensor_upper_limit_threshold_${i}" value="0" step="0.01">
+                                </div>
+                                <div class="form-group">
+                                    <label>Upper Limit Noise</label>
+                                    <input type="number" id="sensor_upper_limit_noise_${i}" value="0" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                `;
+                container.appendChild(sensorContent);
+            }
+        }
+
+        // Function to update RS485 Slave Index dropdown based on Communication Protocol
+        function updateRS485SlaveOptions(sensorIndex) {
+            const protocolSelect = document.getElementById(`sensor_protocol_${sensorIndex}`);
+            const slaveSelect = document.getElementById(`sensor_rs485_slave_${sensorIndex}`);
+            const slaveLabel = document.getElementById(`sensor_rs485_slave_label_${sensorIndex}`);
+
+            if (!protocolSelect || !slaveSelect || !slaveLabel) return;
+
+            const protocol = parseInt(protocolSelect.value);
+
+            // Clear existing options
+            slaveSelect.innerHTML = '';
+
+            if (protocol <= 3) {
+                // ADC protocols (0-3) - Disable dropdown
+                slaveSelect.disabled = true;
+                slaveLabel.textContent = 'RS-485 Slave Index (Not applicable)';
+
+                // Add single disabled option
+                const option = document.createElement('option');
+                option.value = '0';
+                option.textContent = 'Not applicable for ADC';
+                slaveSelect.appendChild(option);
+
+            } else if (protocol === 4) {
+                // RS485 CH1 - Enable dropdown with CH1 options
+                slaveSelect.disabled = false;
+                slaveLabel.textContent = 'RS-485 Slave Index (CH1)';
+
+                // Add options for Slave 0-9 CH1
+                for (let i = 0; i < 10; i++) {
+                    const option = document.createElement('option');
+                    option.value = i.toString();
+                    option.textContent = `Slave ${i} CH1`;
+                    slaveSelect.appendChild(option);
+                }
+
+            } else if (protocol === 5) {
+                // RS485 CH2 - Enable dropdown with CH2 options
+                slaveSelect.disabled = false;
+                slaveLabel.textContent = 'RS-485 Slave Index (CH2)';
+
+                // Add options for Slave 0-9 CH2
+                for (let i = 0; i < 10; i++) {
+                    const option = document.createElement('option');
+                    option.value = i.toString();
+                    option.textContent = `Slave ${i} CH2`;
+                    slaveSelect.appendChild(option);
+                }
+            }
+        }
+
+        // Function to switch between sensor tabs
+        function openSensorTab(sensorIndex) {
+            // Hide all sensor contents
+            const contents = document.getElementsByClassName('sensor-content');
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            // Remove active class from all tabs
+            const tabs = document.getElementsByClassName('sensor-tab');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            // Show selected sensor content
+            document.getElementById(`sensor-content-${sensorIndex}`).classList.add('active');
+
+            // Add active class to clicked tab
+            tabs[sensorIndex].classList.add('active');
+        }
+
+        // Function to switch between horizontal tabs (for RS485 slaves)
+        function openHorizontalTab(evt, tabName, group) {
+            if (group === 'rs485') {
+                // Handle main channel tabs (Channel 1 vs Channel 2)
+                const tabContents = document.querySelectorAll('.content-body .horizontal-tab-content');
+
+                // Hide all main channel tab contents
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+
+                // Get all main channel tabs
+                const tabs = evt.currentTarget.parentNode.getElementsByClassName('horizontal-tab');
+
+                // Remove active class from all main channel tabs
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+
+                // Show the selected main channel tab content
+                document.getElementById(tabName).classList.add('active');
+
+                // Add active class to the clicked main channel tab
+                evt.currentTarget.classList.add('active');
+            } else if (group === 'io') {
+                // Handle Digital I/O tabs (DO vs DI)
+                const tabContents = document.querySelectorAll('#io .content-body .horizontal-tab-content');
+
+                // Hide all I/O tab contents
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+
+                // Get all I/O tabs
+                const tabs = evt.currentTarget.parentNode.getElementsByClassName('horizontal-tab');
+
+                // Remove active class from all I/O tabs
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+
+                // Show the selected I/O tab content
+                document.getElementById(tabName).classList.add('active');
+
+                // Add active class to the clicked I/O tab
+                evt.currentTarget.classList.add('active');
+            } else if (group === 'ftp') {
+                // Handle FTP server tabs
+                const tabContents = document.querySelectorAll('#ftp-container .horizontal-tab-content');
+
+                // Hide all FTP tab contents
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+
+                // Get all FTP tabs
+                const tabs = evt.currentTarget.parentNode.getElementsByClassName('horizontal-tab');
+
+                // Remove active class from all FTP tabs
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+
+                // Show the selected FTP tab content
+                document.getElementById(tabName).classList.add('active');
+
+                // Add active class to the clicked FTP tab
+                evt.currentTarget.classList.add('active');
+            } else {
+                // Handle slave tabs within each channel
+                const tabContents = document.querySelectorAll(`#${group}-slaves-container .horizontal-tab-content`);
+
+                // Hide all tab contents in this group
+                for (let i = 0; i < tabContents.length; i++) {
+                    tabContents[i].classList.remove('active');
+                }
+
+                // Get all tabs for this group
+                const tabs = evt.currentTarget.parentNode.getElementsByClassName('horizontal-tab');
+
+                // Remove active class from all tabs in this group
+                for (let i = 0; i < tabs.length; i++) {
+                    tabs[i].classList.remove('active');
+                }
+
+                // Show the selected tab content
+                document.getElementById(tabName).classList.add('active');
+
+                // Add active class to the clicked tab
+                evt.currentTarget.classList.add('active');
+            }
+        }
+
+        // Initialize RS485
+        function initRS485() {
+            // Initialize Channel 1 slaves
+            const ch1Container = document.getElementById('rs485-ch1-slaves-container');
+            for (let slave = 1; slave <= 10; slave++) {
+                const slaveContent = document.createElement('div');
+                slaveContent.className = `horizontal-tab-content ${slave === 1 ? 'active' : ''}`;
+                slaveContent.id = `rs485-ch1-slave${slave}-tab`;
+
+                slaveContent.innerHTML = `
+<div class="sensor-card-header">
+    🔗 Channel 1 - Slave ${slave} Configuration
+</div>
+<div class="form-grid">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch1_slave${slave}_enable" checked>
+        <label for="rs485_ch1_slave${slave}_enable">Enable Slave ${slave}</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="form-group">
+        <label>Slave ID</label>
+        <input type="number" id="rs485_ch1_slave${slave}_id" value="${slave}" min="1" max="247">
+    </div>
+    <div class="form-group">
+        <label>Baudrate</label>
+        <select id="rs485_ch1_slave${slave}_baudrate">
+            <option value="9600" selected>9600</option>
+            <option value="19200">19200</option>
+            <option value="38400">38400</option>
+            <option value="57600">57600</option>
+            <option value="115200">115200</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Serial Config</label>
+        <select id="rs485_ch1_slave${slave}_serial_config">
+            <option value=134217744>SERIAL_5N1 (5 data, No parity, 1 stop)</option>
+            <option value=134217748>SERIAL_6N1 (6 data, No parity, 1 stop)</option>
+            <option value=134217752>SERIAL_7N1 (7 data, No parity, 1 stop)</option>
+            <option value=134217756>SERIAL_8N1 (8 data, No parity, 1 stop)</option>
+            <option value=134217776>SERIAL_5N2 (5 data, No parity, 2 stop)</option>
+            <option value=134217780>SERIAL_6N2 (6 data, No parity, 2 stop)</option>
+            <option value=134217784>SERIAL_7N2 (7 data, No parity, 2 stop)</option>
+            <option value=134217788>SERIAL_8N2 (8 data, No parity, 2 stop)</option>
+            <option value=134217746>SERIAL_5E1 (5 data, Even parity, 1 stop)</option>
+            <option value=134217750>SERIAL_6E1 (6 data, Even parity, 1 stop)</option>
+            <option value=134217754>SERIAL_7E1 (7 data, Even parity, 1 stop)</option>
+            <option value=134217758>SERIAL_8E1 (8 data, Even parity, 1 stop)</option>
+            <option value=134217778>SERIAL_5E2 (5 data, Even parity, 2 stop)</option>
+            <option value=134217782>SERIAL_6E2 (6 data, Even parity, 2 stop)</option>
+            <option value=134217786>SERIAL_7E2 (7 data, Even parity, 2 stop)</option>
+            <option value=134217790>SERIAL_8E2 (8 data, Even parity, 2 stop)</option>
+            <option value=134217747>SERIAL_5O1 (5 data, Odd parity, 1 stop)</option>
+            <option value=134217751>SERIAL_6O1 (6 data, Odd parity, 1 stop)</option>
+            <option value=134217755>SERIAL_7O1 (7 data, Odd parity, 1 stop)</option>
+            <option value=134217759>SERIAL_8O1 (8 data, Odd parity, 1 stop)</option>
+            <option value=134217779>SERIAL_5O2 (5 data, Odd parity, 2 stop)</option>
+            <option value=134217783>SERIAL_6O2 (6 data, Odd parity, 2 stop)</option>
+            <option value=134217787>SERIAL_7O2 (7 data, Odd parity, 2 stop)</option>
+            <option value=134217791>SERIAL_8O2 (8 data, Odd parity, 2 stop)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Timeout (ms)</label>
+        <input type="number" id="rs485_ch1_slave${slave}_timeout" value="500" min="100" max="5000">
+    </div>
+    <div class="form-group">
+        <label>Function Code</label>
+        <select id="rs485_ch1_slave${slave}_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+            <option value="5">05 - Write Single Coil</option>
+            <option value="6">06 - Write Single Register</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Starting Address</label>
+        <input type="number" id="rs485_ch1_slave${slave}_start_addr" value="0" min="0">
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" id="rs485_ch1_slave${slave}_quantity" value="2" min="1">
+    </div>
+</div>
+
+<div class="sensor-card-header" style="margin-top: 20px;">
+    📊 Calibration Status Reading
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch1_slave${slave}_calib_enable">
+        <label for="rs485_ch1_slave${slave}_calib_enable">Enable Calibration Status Reading</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 10px;">
+    <div class="form-group">
+        <label>Calib Function Code</label>
+        <select id="rs485_ch1_slave${slave}_calib_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Calib Status Address</label>
+        <input type="number" id="rs485_ch1_slave${slave}_calib_addr" value="16" min="0">
+    </div>
+    <div class="form-group">
+        <label>Calib Status Value</label>
+        <input type="number" id="rs485_ch1_slave${slave}_calib_value" value="100" min="0">
+    </div>
+</div>
+
+<div class="sensor-card-header" style="margin-top: 20px;">
+    ⚠️ Error Status Reading
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch1_slave${slave}_error_enable">
+        <label for="rs485_ch1_slave${slave}_error_enable">Enable Error Status Reading</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 10px;">
+    <div class="form-group">
+        <label>Error Function Code</label>
+        <select id="rs485_ch1_slave${slave}_error_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Error Status Address</label>
+        <input type="number" id="rs485_ch1_slave${slave}_error_addr" value="17" min="0">
+    </div>
+    <div class="form-group">
+        <label>Error Status Value</label>
+        <input type="number" id="rs485_ch1_slave${slave}_error_value" value="200" min="0">
+    </div>
+</div>
+                `;
+                ch1Container.appendChild(slaveContent);
+            }
+
+            // Initialize Channel 2 slaves
+            const ch2Container = document.getElementById('rs485-ch2-slaves-container');
+            for (let slave = 1; slave <= 10; slave++) {
+                const slaveContent = document.createElement('div');
+                slaveContent.className = `horizontal-tab-content ${slave === 1 ? 'active' : ''}`;
+                slaveContent.id = `rs485-ch2-slave${slave}-tab`;
+
+                slaveContent.innerHTML = `
+<div class="sensor-card-header">
+    🔗 Channel 2 - Slave ${slave} Configuration
+</div>
+<div class="form-grid">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch2_slave${slave}_enable" checked>
+        <label for="rs485_ch2_slave${slave}_enable">Enable Slave ${slave}</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="form-group">
+        <label>Slave ID</label>
+        <input type="number" id="rs485_ch2_slave${slave}_id" value="${slave + 10}" min="1" max="247">
+    </div>
+    <div class="form-group">
+        <label>Baudrate</label>
+        <select id="rs485_ch2_slave${slave}_baudrate">
+            <option value="9600" selected>9600</option>
+            <option value="19200">19200</option>
+            <option value="38400">38400</option>
+            <option value="57600">57600</option>
+            <option value="115200">115200</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Serial Config</label>
+        <select id="rs485_ch2_slave${slave}_serial_config">
+            <option value=134217744>SERIAL_5N1 (5 data, No parity, 1 stop)</option>
+            <option value=134217748>SERIAL_6N1 (6 data, No parity, 1 stop)</option>
+            <option value=134217752>SERIAL_7N1 (7 data, No parity, 1 stop)</option>
+            <option value=134217756>SERIAL_8N1 (8 data, No parity, 1 stop)</option>
+            <option value=134217776>SERIAL_5N2 (5 data, No parity, 2 stop)</option>
+            <option value=134217780>SERIAL_6N2 (6 data, No parity, 2 stop)</option>
+            <option value=134217784>SERIAL_7N2 (7 data, No parity, 2 stop)</option>
+            <option value=134217788>SERIAL_8N2 (8 data, No parity, 2 stop)</option>
+            <option value=134217746>SERIAL_5E1 (5 data, Even parity, 1 stop)</option>
+            <option value=134217750>SERIAL_6E1 (6 data, Even parity, 1 stop)</option>
+            <option value=134217754>SERIAL_7E1 (7 data, Even parity, 1 stop)</option>
+            <option value=134217758>SERIAL_8E1 (8 data, Even parity, 1 stop)</option>
+            <option value=134217778>SERIAL_5E2 (5 data, Even parity, 2 stop)</option>
+            <option value=134217782>SERIAL_6E2 (6 data, Even parity, 2 stop)</option>
+            <option value=134217786>SERIAL_7E2 (7 data, Even parity, 2 stop)</option>
+            <option value=134217790>SERIAL_8E2 (8 data, Even parity, 2 stop)</option>
+            <option value=134217747>SERIAL_5O1 (5 data, Odd parity, 1 stop)</option>
+            <option value=134217751>SERIAL_6O1 (6 data, Odd parity, 1 stop)</option>
+            <option value=134217755>SERIAL_7O1 (7 data, Odd parity, 1 stop)</option>
+            <option value=134217759>SERIAL_8O1 (8 data, Odd parity, 1 stop)</option>
+            <option value=134217779>SERIAL_5O2 (5 data, Odd parity, 2 stop)</option>
+            <option value=134217783>SERIAL_6O2 (6 data, Odd parity, 2 stop)</option>
+            <option value=134217787>SERIAL_7O2 (7 data, Odd parity, 2 stop)</option>
+            <option value=134217791>SERIAL_8O2 (8 data, Odd parity, 2 stop)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Timeout (ms)</label>
+        <input type="number" id="rs485_ch2_slave${slave}_timeout" value="500" min="100" max="5000">
+    </div>
+    <div class="form-group">
+        <label>Function Code</label>
+        <select id="rs485_ch2_slave${slave}_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+            <option value="5">05 - Write Single Coil</option>
+            <option value="6">06 - Write Single Register</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Starting Address</label>
+        <input type="number" id="rs485_ch2_slave${slave}_start_addr" value="0" min="0">
+    </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" id="rs485_ch2_slave${slave}_quantity" value="2" min="1">
+    </div>
+</div>
+
+<div class="sensor-card-header" style="margin-top: 20px;">
+    📊 Calibration Status Reading
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch2_slave${slave}_calib_enable">
+        <label for="rs485_ch2_slave${slave}_calib_enable">Enable Calibration Status Reading</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 10px;">
+    <div class="form-group">
+        <label>Calib Function Code</label>
+        <select id="rs485_ch2_slave${slave}_calib_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Calib Status Address</label>
+        <input type="number" id="rs485_ch2_slave${slave}_calib_addr" value="16" min="0">
+    </div>
+    <div class="form-group">
+        <label>Calib Status Value</label>
+        <input type="number" id="rs485_ch2_slave${slave}_calib_value" value="100" min="0">
+    </div>
+</div>
+
+<div class="sensor-card-header" style="margin-top: 20px;">
+    ⚠️ Error Status Reading
+</div>
+<div class="form-grid" style="margin-top: 15px;">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" id="rs485_ch2_slave${slave}_error_enable">
+        <label for="rs485_ch2_slave${slave}_error_enable">Enable Error Status Reading</label>
+    </div>
+</div>
+<div class="form-grid" style="margin-top: 10px;">
+    <div class="form-group">
+        <label>Error Function Code</label>
+        <select id="rs485_ch2_slave${slave}_error_function_code">
+            <option value="1">01 - Read Coils</option>
+            <option value="2">02 - Read Discrete Inputs</option>
+            <option value="3" selected>03 - Read Holding Registers</option>
+            <option value="4">04 - Read Input Registers</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Error Status Address</label>
+        <input type="number" id="rs485_ch2_slave${slave}_error_addr" value="17" min="0">
+    </div>
+    <div class="form-group">
+        <label>Error Status Value</label>
+        <input type="number" id="rs485_ch2_slave${slave}_error_value" value="200" min="0">
+    </div>
+</div>
+                `;
+                ch2Container.appendChild(slaveContent);
+            }
+        }
+
+        // Initialize FTP
+        function initFTP() {
+            const container = document.getElementById('ftp-container');
+            for (let i = 0; i < 4; i++) {
+                const ftpContent = document.createElement('div');
+                ftpContent.className = `horizontal-tab-content ${i === 0 ? 'active' : ''}`;
+                ftpContent.id = `ftp-server${i + 1}-tab`;
+
+                ftpContent.innerHTML = `
+                    <div class="sensor-card">
+                        <div class="sensor-card-header">
+                            📤 FTP Server ${i + 1} Configuration
+                        </div>
+                        <div class="form-grid">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="ftp_active_${i}">
+                                <label for="ftp_active_${i}">Activate FTP Server ${i + 1}</label>
+                            </div>
+                        </div>
+                        <div class="form-grid" style="margin-top: 15px;">
+                            <div class="form-group">
+                                <label>FTP Host Address</label>
+                                <input type="text" id="ftp_host_${i}" value="103.149.86.230">
+                            </div>
+                            <div class="form-group">
+                                <label>Port Number</label>
+                                <input type="number" id="ftp_port_${i}" value="21">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" id="ftp_user_${i}" value="ftpuser">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="text" id="ftp_pass_${i}" value="abc123123">
+                            </div>
+                            <div class="form-group">
+                                <label>Timeout (seconds)</label>
+                                <input type="number" id="ftp_timeout_${i}" value="10" min="5">
+                            </div>
+                            <div class="form-group">
+                                <label>Retry Attempts</label>
+                                <input type="number" id="ftp_retry_${i}" value="3" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Upload Path</label>
+                                <input type="text" id="ftp_path_${i}" value="/Test/%YYYY%/%MM%/%DD%">
+                            </div>
+                            <div class="form-group">
+                                <label>File Name Pattern</label>
+                                <input type="text" id="ftp_file_${i}" value="Test_%YYYY%%MM%%DD%%HH%%MM%%SS%%.txt">
+                            </div>
+                            <div class="form-group">
+                                <label>Send Interval (minutes)</label>
+                                <input type="number" id="ftp_send_time_${i}" value="5" min="5" max="60">
+                            </div>
+                            <div class="form-group">
+                                <label>Max Files Per Send</label>
+                                <input type="number" id="ftp_max_files_${i}" value="20" min="1" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label>Unsent Files Path (SD Card)</label>
+                                <input type="text" id="ftp_logger_save_path_${i}" value="/LOG/FTP${i + 1}/UNSENT" placeholder="/LOG/FTP1/UNSENT">
+                            </div>
+                            <div class="form-group">
+                                <label>Sent Files Path (SD Card)</label>
+                                <input type="text" id="ftp_logger_sent_path_${i}" value="/LOG/FTP${i + 1}/SENT" placeholder="/LOG/FTP1/SENT">
+                            </div>
+                        </div>
+                        
+                        <div class="sensor-card" style="margin-top: 15px;">
+                            <div class="sensor-card-header">
+                                📊 Sensor Selection for FTP Server ${i + 1}
+                            </div>
+                            <div style="padding: 15px;">
+                                <p style="margin: 0 0 10px 0; color: #666; font-size: 0.9em;">
+                                    Select which sensors to include in the data file sent to this FTP server:
+                                </p>
+                                <div class="form-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                                    ${Array.from({length: 10}, (_, j) => `
+                                        <div class="checkbox-wrapper">
+                                            <input type="checkbox" id="ftp_sensor_${i}_${j}" checked>
+                                            <label for="ftp_sensor_${i}_${j}">Sensor ${j + 1}</label>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(ftpContent);
+            }
+        }
+
+        function openTab(tabName) {
+            const contents = document.getElementsByClassName('tab-content');
+            const tabs = document.getElementsByClassName('nav-tab');
+
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Start/stop dashboard refresh based on active tab
+            if (tabName === 'dashboard') {
+                startDashboardRefresh();
+            } else {
+                stopDashboardRefresh();
+            }
+
+            // Hide/show save config button based on active tab
+            const saveConfigBtn = document.getElementById('save-config-btn');
+            if (saveConfigBtn) {
+                if (tabName === 'dashboard') {
+                    saveConfigBtn.style.display = 'none';
+                } else {
+                    saveConfigBtn.style.display = 'flex';
+                }
+            }
+
+            // Close mobile menu when tab is selected
+            closeMobileMenu();
+        }
+
+        // Load Configuration from DHA-1
+        async function loadConfiguration() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                showError('Not authenticated. Please login again.');
+                showLogin();
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        showError('Session expired. Please login again.');
+                        logout();
+                        return;
+                    }
+                    throw new Error('Failed to load configuration: ' + response.statusText);
+                }
+
+                const config = await response.json();
+                console.log('Config received:', config);
+
+                // Helper function to safely set value
+                const setValue = (id, value) => {
+                    const elem = document.getElementById(id);
+                    if (elem) elem.value = value !== undefined && value !== null ? value : '';
+                };
+
+                const setChecked = (id, checked) => {
+                    const elem = document.getElementById(id);
+                    if (elem) {
+                        elem.checked = checked || false;
+                    }
+                };
+
+                // ========== 1. DEVICE INFO ==========
+                if (config.device_info) {
+                    setValue('device_name', config.device_info.device_name);
+                    setValue('device_id', config.device_info.device_id);
+                    setValue('sub_id', config.device_info.sub_id);
+                    setValue('location_x', config.device_info.location_X);
+                    setValue('location_y', config.device_info.location_Y);
+                    setValue('area', config.device_info.area);
+                    setValue('device_type', config.device_info.device_type);
+                }
+                console.log('✓ Device info loaded');
+
+                // ========== 2. LCD CONFIG ==========
+                if (config.lcd_config) {
+                    setChecked('lcd_enable', config.lcd_config.enable);
+                    setChecked('lcd_backlight_enable', config.lcd_config.backlight_enable);
+                    setValue('lcd_refresh_rate', config.lcd_config.refresh_rate);
+                }
+                console.log('✓ LCD config loaded');
+
+                // ========== 3. AI (4-20mA) CONFIG ==========
+                if (config.ai_config) {
+                    setValue('ai_refresh_rate', config.ai_config.refresh_rate);
+                    if (config.ai_config.enable_list) {
+                        for (let i = 0; i < config.ai_config.enable_list.length && i < 4; i++) {
+                            setChecked(`ai_ch${i + 1}`, config.ai_config.enable_list[i]);
+                        }
+                    }
+                }
+                console.log('✓ AI config loaded');
+
+                // ========== 4. DO CONFIG ==========
+                if (config.do_config) {
+                    setValue('do_refresh_rate', config.do_config.refresh_rate);
+
+                    // DO Enable list
+                    if (config.do_config.enable_list) {
+                        for (let i = 0; i < config.do_config.enable_list.length && i < 4; i++) {
+                            setChecked(`do_enable_${i}`, config.do_config.enable_list[i]);
+                        }
+                    }
+
+                    // DO Protocol list
+                    if (config.do_config.protocol_list) {
+                        for (let i = 0; i < config.do_config.protocol_list.length && i < 4; i++) {
+                            setValue(`do_protocol_${i}`, config.do_config.protocol_list[i]);
+                        }
+                    }
+
+                    // Schmitt Trigger parameters
+                    if (config.do_config.schmitt_trigger_sensor_list) {
+                        for (let i = 0; i < 4; i++) {
+                            setValue(`do_schmitt_sensor_${i}`, config.do_config.schmitt_trigger_sensor_list[i]);
+                            setValue(`do_schmitt_valuetype_${i}`, config.do_config.schmitt_trigger_valuetype_list[i]);
+                            setValue(`do_schmitt_upper_${i}`, config.do_config.schmitt_trigger_upper_threshold_list[i]);
+                            setValue(`do_schmitt_lower_${i}`, config.do_config.schmitt_trigger_lower_threshold_list[i]);
+                        }
+                    }
+
+                    // Control Sensor parameters
+                    if (config.do_config.control_sensor_list) {
+                        for (let i = 0; i < 4; i++) {
+                            setValue(`do_control_sensor_${i}`, config.do_config.control_sensor_list[i]);
+                            setValue(`do_control_state_${i}`, config.do_config.control_sensor_state_list[i]);
+                        }
+                    }
+
+                    // Control Digital Input
+                    if (config.do_config.control_input_digital_list) {
+                        for (let i = 0; i < 4; i++) {
+                            setValue(`do_control_di_${i}`, config.do_config.control_input_digital_list[i]);
+                        }
+                    }
+                }
+                console.log('✓ DO config loaded');
+
+                // ========== 5. DI CONFIG ==========
+                if (config.di_config) {
+                    setValue('di_refresh_rate', config.di_config.refresh_rate);
+
+                    // DI Enable list
+                    if (config.di_config.enable_list) {
+                        for (let i = 0; i < config.di_config.enable_list.length && i < 4; i++) {
+                            setChecked(`di_enable_${i}`, config.di_config.enable_list[i]);
+                        }
+                    }
+
+                    // DI Control Sensor State parameters
+                    if (config.di_config.control_sensor_state_enable_list) {
+                        for (let i = 0; i < 4; i++) {
+                            setChecked(`di_control_enable_${i}`, config.di_config.control_sensor_state_enable_list[i]);
+                            setValue(`di_control_sensor_${i}`, config.di_config.control_sensor_list[i]);
+                            setValue(`di_control_state_${i}`, config.di_config.control_sensor_state_list[i]);
+                        }
+                    }
+                }
+                console.log('✓ DI config loaded');
+
+                // ========== 6. RS485 CONFIG ==========
+                if (config.rs485_config) {
+                    // RS485 Channel enable
+                    if (config.rs485_config.enable) {
+                        setChecked('rs485_ch1_enable', config.rs485_config.enable[0]);
+                        setChecked('rs485_ch2_enable', config.rs485_config.enable[1]);
+                    }
+
+                    // RS485 Slaves
+                    if (config.rs485_config.slaves) {
+                        for (let ch = 0; ch < config.rs485_config.slaves.length && ch < 2; ch++) {
+                            const channelSlaves = config.rs485_config.slaves[ch];
+                            const chPrefix = ch === 0 ? 'ch1' : 'ch2';
+                            // const slave = channelSlaves[slave_index];
+
+                            for (let slave_index = 0; slave_index < 10; slave_index++) {
+                                const slaveNum = slave_index + 1;
+
+                                setChecked(`rs485_${chPrefix}_slave${slaveNum}_enable`, channelSlaves.enable_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_id`, channelSlaves.id_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_baudrate`, channelSlaves.baudrate_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_serial_config`, channelSlaves.serial_config_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_timeout`, channelSlaves.timeout_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_function_code`, channelSlaves.function_code_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_start_addr`, channelSlaves.starting_address_list[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_quantity`, channelSlaves.quantity_list[slave_index]);
+
+                                // Calibration status
+                                setChecked(`rs485_${chPrefix}_slave${slaveNum}_calib_enable`, channelSlaves.calib_status_enable[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_calib_function_code`, channelSlaves.calib_state_function_code[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_calib_addr`, channelSlaves.calib_state_address[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_calib_value`, channelSlaves.calib_state_value[slave_index]);
+
+                                // Error status
+                                setChecked(`rs485_${chPrefix}_slave${slaveNum}_error_enable`, channelSlaves.error_status_enable[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_error_function_code`, channelSlaves.error_state_function_code[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_error_addr`, channelSlaves.error_state_address[slave_index]);
+                                setValue(`rs485_${chPrefix}_slave${slaveNum}_error_value`, channelSlaves.error_state_value[slave_index]);
+                            }
+                        }
+                    }
+                }
+                console.log('✓ RS485 config loaded');
+
+                // ========== 7. SENSOR CONFIG ==========
+                if (config.sensor_config && config.sensor_config.sensors) {
+                    for (let i = 0; i < config.sensor_config.sensors.length && i < 10; i++) {
+                        const sensor = config.sensor_config.sensors[i];
+
+                        // Basic info
+                        setChecked(`sensor_enable_${i}`, sensor.enable);
+                        setValue(`sensor_name_${i}`, sensor.name);
+                        setValue(`sensor_unit_${i}`, sensor.unit);
+                        setValue(`sensor_interval_${i}`, sensor.read_interval);
+                        setValue(`sensor_protocol_${i}`, sensor.protocol);
+                        setValue(`sensor_state_protocol_${i}`, sensor.state_reading_protocol);
+
+                        // Update RS485 slave dropdown based on protocol, then set value
+                        updateRS485SlaveOptions(i);
+                        
+                        // rs485_index is 2D array [channel][sensor], extract the correct channel
+                        // Protocol 4 = RS485 CH1 (use index [0]), Protocol 5 = RS485 CH2 (use index [1])
+                        if (sensor.rs485_index) {
+                            const protocol = sensor.protocol;
+                            if (protocol === 4) {
+                                // RS485 CH1 - use channel 0 index
+                                setValue(`sensor_rs485_slave_${i}`, sensor.rs485_index[0]);
+                            } else if (protocol === 5) {
+                                // RS485 CH2 - use channel 1 index
+                                setValue(`sensor_rs485_slave_${i}`, sensor.rs485_index[1]);
+                            }
+                        }
+
+                        setValue(`sensor_data_type_${i}`, sensor.data_type);
+                        setValue(`sensor_id_${i}`, sensor.id);
+
+                        // Calibration
+                        if (sensor.calibration) {
+                            setValue(`sensor_calibration_function_${i}`, sensor.calibration.function_order);
+                            setValue(`sensor_index_a_${i}`, sensor.calibration.index_A);
+                            setValue(`sensor_index_b_${i}`, sensor.calibration.index_B);
+                            setValue(`sensor_index_c_${i}`, sensor.calibration.index_C);
+                            setValue(`sensor_index_d_${i}`, sensor.calibration.index_D);
+                            // for point table, load points
+                            if (sensor.calibration.point_table) {
+                                for (let p = 0; p < sensor.calibration.point_table.length && p < 10; p++) {
+                                    setChecked(`calib-table-point${p + 1}-enable-sensor-${i}`, sensor.calibration.point_table[p].enable);
+                                    setValue(`calib-table-point${p + 1}-raw-value-sensor-${i}`, sensor.calibration.point_table[p].raw_value);
+                                    setValue(`calib-table-point${p + 1}-calib-value-sensor-${i}`, sensor.calibration.point_table[p].calib_value);
+                                }
+                            }
+                        }
+
+                        // Error thresholds
+                        if (sensor.error) {
+                            setChecked(`sensor_error_enable_${i}`, sensor.error.enable);
+                            setValue(`sensor_raw_error_lower_threshold_${i}`, sensor.error.raw_lower);
+                            setValue(`sensor_raw_error_upper_threshold_${i}`, sensor.error.raw_upper);
+                            setValue(`sensor_calib_error_lower_threshold_${i}`, sensor.error.calib_lower);
+                            setValue(`sensor_calib_error_upper_threshold_${i}`, sensor.error.calib_upper);
+                        }
+
+                        // Limit (noise) thresholds
+                        if (sensor.limit) {
+                            setChecked(`sensor_limit_enable_${i}`, sensor.limit.enable);
+                            setValue(`sensor_lower_limit_threshold_${i}`, sensor.limit.lower_threshold);
+                            setValue(`sensor_lower_limit_noise_${i}`, sensor.limit.lower_noise);
+                            setValue(`sensor_upper_limit_threshold_${i}`, sensor.limit.upper_threshold);
+                            setValue(`sensor_upper_limit_noise_${i}`, sensor.limit.upper_noise);
+                        }
+                    }
+                }
+                console.log('✓ Sensor config loaded');
+
+                // ========== 8. MQTT CONFIG ==========
+                if (config.mqtt_config) {
+                    setChecked('mqtt_public_enable', config.mqtt_config.public_enable);
+                    setChecked('mqtt_subscribe_enable', config.mqtt_config.subscribe_enable);
+                    setValue('mqtt_sending_interval', config.mqtt_config.sending_interval);
+                    setValue('mqtt_port', config.mqtt_config.port);
+                    setValue('mqtt_pub_topic', config.mqtt_config.pub_topic);
+                    setValue('mqtt_sub_topic', config.mqtt_config.sub_topic);
+                    setValue('mqtt_broker', config.mqtt_config.broker);
+                    setValue('mqtt_client_id', config.mqtt_config.client_id);
+                    setValue('mqtt_username', config.mqtt_config.username);
+                    setValue('mqtt_password', config.mqtt_config.password);
+                    setValue('mqtt_max_retry_times', config.mqtt_config.max_retry_times);
+                }
+                console.log('✓ MQTT config loaded');
+
+                // ========== 9. FTP CONFIG ==========
+                if (config.ftp_config && config.ftp_config.servers) {
+                    for (let i = 0; i < config.ftp_config.servers.length && i < 4; i++) {
+                        const server = config.ftp_config.servers[i];
+
+                        setChecked(`ftp_active_${i}`, server.active);
+                        setValue(`ftp_host_${i}`, server.host);
+                        setValue(`ftp_port_${i}`, server.port);
+                        setValue(`ftp_user_${i}`, server.user);
+                        setValue(`ftp_pass_${i}`, server.pass);
+                        setValue(`ftp_timeout_${i}`, server.timeout);
+                        setValue(`ftp_retry_${i}`, server.retry_times);
+                        setValue(`ftp_path_${i}`, server.path);
+                        setValue(`ftp_file_${i}`, server.file_name);
+                        setValue(`ftp_send_time_${i}`, server.send_time);
+                        setValue(`ftp_max_files_${i}`, server.max_file_number);
+                        
+                        // Load sensor selection config
+                        if (server.sensor_config && Array.isArray(server.sensor_config)) {
+                            for (let j = 0; j < server.sensor_config.length && j < 10; j++) {
+                                setChecked(`ftp_sensor_${i}_${j}`, server.sensor_config[j]);
+                            }
+                        }
+                    }
+                }
+                console.log('✓ FTP config loaded');
+
+                // ========== 10. LOGGER CONFIG ==========
+                if (config.logger_config) {
+                    if (config.logger_config.save_paths && Array.isArray(config.logger_config.save_paths)) {
+                        for (let i = 0; i < config.logger_config.save_paths.length && i < 4; i++) {
+                            setValue(`ftp_logger_save_path_${i}`, config.logger_config.save_paths[i]);
+                        }
+                    }
+                    if (config.logger_config.sent_paths && Array.isArray(config.logger_config.sent_paths)) {
+                        for (let i = 0; i < config.logger_config.sent_paths.length && i < 4; i++) {
+                            setValue(`ftp_logger_sent_path_${i}`, config.logger_config.sent_paths[i]);
+                        }
+                    }
+                }
+                console.log('✓ Logger config loaded');
+
+                // ========== 11. RTC CONFIG ==========
+                if (config.rtc_config) {
+                    setChecked('rtc_setup_enable', config.rtc_config.setting_request);
+                    setValue('rtc_hour', config.rtc_config.hour);
+                    setValue('rtc_minute', config.rtc_config.minute);
+                    setValue('rtc_second', config.rtc_config.second);
+                    setValue('rtc_day', config.rtc_config.day);
+                    setValue('rtc_month', config.rtc_config.month);
+                    setValue('rtc_year', config.rtc_config.year);
+                    setChecked('rtc_auto_update_from_ntp', config.rtc_config.auto_update_from_ntp);
+                    setValue('rtc_ntp_server', config.rtc_config.ntp_server);
+                }
+                console.log('✓ RTC config loaded');
+
+                console.log('========================================');
+                console.log('✅ ALL CONFIGURATION LOADED SUCCESSFULLY');
+                console.log('========================================');
+                showSuccess('✅ Configuration loaded from DHA-1');
+
+            } catch (error) {
+                console.error('Load config error:', error);
+                showError('Failed to load configuration: ' + error.message);
+            }
+        }
+
+        function saveConfig() {
+            // Show confirmation dialog
+            const confirmed = confirm('⚠️ Save Configuration?\n\n• Configuration will be saved to SD Card\n• DHA-1 will restart automatically\n• You will need to login again\n\nContinue?');
+
+            if (!confirmed) {
+                return;
+            }
+
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                showError('Not authenticated. Please login again.');
+                showLogin();
+                return;
+            }
+
+            // Helper functions
+            const getValue = (id, defaultValue = '') => {
+                const elem = document.getElementById(id);
+                return elem ? elem.value : defaultValue;
+            };
+
+            const getIntValue = (id, defaultValue = 0) => {
+                const elem = document.getElementById(id);
+                return elem ? parseInt(elem.value) || defaultValue : defaultValue;
+            };
+
+            const getFloatValue = (id, defaultValue = 0) => {
+                const elem = document.getElementById(id);
+                return elem ? parseFloat(elem.value) || defaultValue : defaultValue;
+            };
+
+            const getChecked = (id, defaultValue = false) => {
+                const elem = document.getElementById(id);
+                return elem ? elem.checked : defaultValue;
+            };
+
+            // Build config matching DHA-1 API structure
+            const config = {
+                // ========== 1. DEVICE INFO ==========
+                device_info: {
+                    device_name: getValue('device_name'),
+                    device_id: getValue('device_id'),
+                    sub_id: getValue('sub_id'),
+                    location_X: getValue('location_x'),
+                    location_Y: getValue('location_y'),
+                    area: getValue('area'),
+                    device_type: getValue('device_type')
+                },
+
+                // ========== 2. LCD CONFIG ==========
+                lcd_config: {
+                    enable: getChecked('lcd_enable'),
+                    backlight_enable: getChecked('lcd_backlight_enable'),
+                    refresh_rate: getIntValue('lcd_refresh_rate', 1000)
+                },
+
+                // ========== 3. AI (4-20mA) CONFIG ==========
+                ai_config: {
+                    refresh_rate: getIntValue('ai_refresh_rate', 1000),
+                    enable_list: [
+                        getChecked('ai_ch1'),
+                        getChecked('ai_ch2'),
+                        getChecked('ai_ch3'),
+                        getChecked('ai_ch4')
+                    ]
+                },
+
+                // ========== 4. DO CONFIG ==========
+                do_config: {
+                    refresh_rate: getIntValue('do_refresh_rate', 1000),
+                    enable_list: [],
+                    protocol_list: [],
+                    schmitt_trigger_sensor_list: [],
+                    schmitt_trigger_valuetype_list: [],
+                    schmitt_trigger_upper_threshold_list: [],
+                    schmitt_trigger_lower_threshold_list: [],
+                    control_sensor_list: [],
+                    control_sensor_state_list: [],
+                    control_input_digital_list: []
+                },
+
+                // ========== 5. DI CONFIG ==========
+                di_config: {
+                    refresh_rate: getIntValue('di_refresh_rate', 1000),
+                    enable_list: [],
+                    control_sensor_state_enable_list: [],
+                    control_sensor_list: [],
+                    control_sensor_state_list: []
+                },
+
+                // ========== 6. RS485 CONFIG ==========
+                rs485_config: {
+                    enable: [
+                        getChecked('rs485_ch1_enable'),
+                        getChecked('rs485_ch2_enable')
+                    ],
+                    slaves: [
+                        // Channel 1
+                        {
+                            enable_list: [],
+                            id_list: [],
+                            baudrate_list: [],
+                            serial_config_list: [],
+                            timeout_list: [],
+                            function_code_list: [],
+                            starting_address_list: [],
+                            quantity_list: [],
+                            calib_status_enable: [],
+                            calib_state_function_code: [],
+                            calib_state_address: [],
+                            calib_state_value: [],
+                            error_status_enable: [],
+                            error_state_function_code: [],
+                            error_state_address: [],
+                            error_state_value: []
+                        },
+                        // Channel 2
+                        {
+                            enable_list: [],
+                            id_list: [],
+                            baudrate_list: [],
+                            serial_config_list: [],
+                            timeout_list: [],
+                            function_code_list: [],
+                            starting_address_list: [],
+                            quantity_list: [],
+                            calib_status_enable: [],
+                            calib_state_function_code: [],
+                            calib_state_address: [],
+                            calib_state_value: [],
+                            error_status_enable: [],
+                            error_state_function_code: [],
+                            error_state_address: [],
+                            error_state_value: []
+                        }
+                    ]
+                },
+
+                // ========== 7. SENSOR CONFIG ==========
+                sensor_config: {
+                    sensors: []
+                },
+
+                // ========== 8. MQTT CONFIG ==========
+                mqtt_config: {
+                    public_enable: getChecked('mqtt_public_enable'),
+                    subscribe_enable: getChecked('mqtt_subscribe_enable'),
+                    sending_interval: getIntValue('mqtt_sending_interval', 5000),
+                    port: getIntValue('mqtt_port', 1883),
+                    pub_topic: getValue('mqtt_pub_topic'),
+                    sub_topic: getValue('mqtt_sub_topic'),
+                    broker: getValue('mqtt_broker'),
+                    client_id: getValue('mqtt_client_id'),
+                    username: getValue('mqtt_username'),
+                    password: getValue('mqtt_password'),
+                    max_retry_times: getIntValue('mqtt_max_retry_times', 3)
+                },
+
+                // ========== 9. FTP CONFIG ==========
+                ftp_config: {
+                    servers: []
+                },
+
+                // ========== 10. LOGGER CONFIG ==========
+                logger_config: {
+                    save_paths: [],
+                    sent_paths: []
+                },
+
+                // ========== 11. RTC CONFIG ==========
+                rtc_config: {
+                    setting_request: getChecked('rtc_setup_enable'),
+                    hour: getIntValue('rtc_hour', 0),
+                    minute: getIntValue('rtc_minute', 0),
+                    second: getIntValue('rtc_second', 0),
+                    day: getIntValue('rtc_day', 1),
+                    month: getIntValue('rtc_month', 1),
+                    year: getIntValue('rtc_year', 2025),
+                    auto_update_from_ntp: getChecked('rtc_auto_update_from_ntp'),
+                    ntp_server: getValue('rtc_ntp_server', 'pool.ntp.org')
+                }
+            };
+
+            // ========== Collect DO data (4 channels) ==========
+            for (let i = 0; i < 4; i++) {
+                config.do_config.enable_list.push(getChecked(`do_enable_${i}`));
+                config.do_config.protocol_list.push(getIntValue(`do_protocol_${i}`, 0));
+                config.do_config.schmitt_trigger_sensor_list.push(getIntValue(`do_schmitt_sensor_${i}`, 0));
+                config.do_config.schmitt_trigger_valuetype_list.push(getIntValue(`do_schmitt_valuetype_${i}`, 0));
+                config.do_config.schmitt_trigger_upper_threshold_list.push(getFloatValue(`do_schmitt_upper_${i}`, 0));
+                config.do_config.schmitt_trigger_lower_threshold_list.push(getFloatValue(`do_schmitt_lower_${i}`, 0));
+                config.do_config.control_sensor_list.push(getIntValue(`do_control_sensor_${i}`, 0));
+                config.do_config.control_sensor_state_list.push(getIntValue(`do_control_state_${i}`, 0));
+                config.do_config.control_input_digital_list.push(getIntValue(`do_control_di_${i}`, 0));
+            }
+
+            // ========== Collect DI data (4 channels) ==========
+            for (let i = 0; i < 4; i++) {
+                config.di_config.enable_list.push(getChecked(`di_enable_${i}`));
+                config.di_config.control_sensor_state_enable_list.push(getChecked(`di_control_enable_${i}`));
+                config.di_config.control_sensor_list.push(getIntValue(`di_control_sensor_${i}`, 0));
+                config.di_config.control_sensor_state_list.push(getIntValue(`di_control_state_${i}`, 0));
+            }
+
+            // ========== Collect RS485 data (2 channels x 10 slaves) ==========
+            for (let ch = 0; ch < 2; ch++) {
+                const chPrefix = ch === 0 ? 'ch1' : 'ch2';
+                const channelSlaves = config.rs485_config.slaves[ch];
+
+                for (let slave_index = 0; slave_index < 10; slave_index++) {
+                    const slaveNum = slave_index + 1;
+
+                    channelSlaves.enable_list.push(getChecked(`rs485_${chPrefix}_slave${slaveNum}_enable`));
+                    channelSlaves.id_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_id`, 1));
+                    channelSlaves.baudrate_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_baudrate`, 9600));
+                    channelSlaves.serial_config_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_serial_config`, 0));
+                    channelSlaves.timeout_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_timeout`, 1000));
+                    channelSlaves.function_code_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_function_code`, 3));
+                    channelSlaves.starting_address_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_start_addr`, 0));
+                    channelSlaves.quantity_list.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_quantity`, 1));
+
+                    // Calibration status
+                    channelSlaves.calib_status_enable.push(getChecked(`rs485_${chPrefix}_slave${slaveNum}_calib_enable`));
+                    channelSlaves.calib_state_function_code.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_calib_function_code`, 3));
+                    channelSlaves.calib_state_address.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_calib_addr`, 0));
+                    channelSlaves.calib_state_value.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_calib_value`, 0));
+
+                    // Error status
+                    channelSlaves.error_status_enable.push(getChecked(`rs485_${chPrefix}_slave${slaveNum}_error_enable`));
+                    channelSlaves.error_state_function_code.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_error_function_code`, 3));
+                    channelSlaves.error_state_address.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_error_addr`, 0));
+                    channelSlaves.error_state_value.push(getIntValue(`rs485_${chPrefix}_slave${slaveNum}_error_value`, 0));
+                }
+            }
+
+            // ========== Collect Sensor data (10 sensors) ==========
+            for (let i = 0; i < 10; i++) {
+                const point_table = [];
+
+                // Collect point table (10 points per sensor)
+                for (let p = 0; p < 10; p++) {
+                    point_table.push({
+                        enable: getChecked(`calib-table-point${p + 1}-enable-sensor-${i}`),
+                        raw_value: getFloatValue(`calib-table-point${p + 1}-raw-value-sensor-${i}`, 0),
+                        calib_value: getFloatValue(`calib-table-point${p + 1}-calib-value-sensor-${i}`, 0)
+                    });
+                }
+
+                const sensor = {
+                    enable: getChecked(`sensor_enable_${i}`),
+                    name: getValue(`sensor_name_${i}`, `Sensor ${i + 1}`),
+                    unit: getValue(`sensor_unit_${i}`),
+                    read_interval: getIntValue(`sensor_interval_${i}`, 1000),
+                    protocol: getIntValue(`sensor_protocol_${i}`, 0),
+                    state_reading_protocol: getIntValue(`sensor_state_protocol_${i}`, 0),
+                    rs485_slave_index: getIntValue(`sensor_rs485_slave_${i}`, 0),
+                    data_type: getIntValue(`sensor_data_type_${i}`, 0),
+                    id: getIntValue(`sensor_id_${i}`, 0),
+                    calibration: {
+                        function_order: getIntValue(`sensor_calibration_function_${i}`, 1),
+                        index_A: getFloatValue(`sensor_index_a_${i}`, 0),
+                        index_B: getFloatValue(`sensor_index_b_${i}`, 1),
+                        index_C: getFloatValue(`sensor_index_c_${i}`, 0),
+                        index_D: getFloatValue(`sensor_index_d_${i}`, 0),
+                        point_table: point_table
+                    },
+                    error: {
+                        enable: getChecked(`sensor_error_enable_${i}`),
+                        raw_lower: getFloatValue(`sensor_raw_error_lower_threshold_${i}`, 0),
+                        raw_upper: getFloatValue(`sensor_raw_error_upper_threshold_${i}`, 4095),
+                        calib_lower: getFloatValue(`sensor_calib_error_lower_threshold_${i}`, 0),
+                        calib_upper: getFloatValue(`sensor_calib_error_upper_threshold_${i}`, 100)
+                    },
+                    limit: {
+                        enable: getChecked(`sensor_limit_enable_${i}`),
+                        lower_threshold: getFloatValue(`sensor_lower_limit_threshold_${i}`, 0),
+                        lower_noise: getFloatValue(`sensor_lower_limit_noise_${i}`, 0),
+                        upper_threshold: getFloatValue(`sensor_upper_limit_threshold_${i}`, 100),
+                        upper_noise: getFloatValue(`sensor_upper_limit_noise_${i}`, 0)
+                    }
+                };
+
+                config.sensor_config.sensors.push(sensor);
+            }
+
+            // ========== Collect FTP data (4 servers) ==========
+            for (let i = 0; i < 4; i++) {
+                const server = {
+                    is_active: getChecked(`ftp_active_${i}`),
+                    host: getValue(`ftp_host_${i}`),
+                    port: getIntValue(`ftp_port_${i}`, 21),
+                    username: getValue(`ftp_user_${i}`),
+                    password: getValue(`ftp_pass_${i}`),
+                    timeout: getIntValue(`ftp_timeout_${i}`, 5000),
+                    max_retry: getIntValue(`ftp_retry_${i}`, 3),
+                    path: getValue(`ftp_path_${i}`),
+                    file_name_pattern: getValue(`ftp_file_${i}`),
+                    send_time_at_minute: getIntValue(`ftp_send_time_${i}`, 0),
+                    max_file_send_number_one_time: getIntValue(`ftp_max_files_${i}`, 1),
+                    sensor_config: []
+                };
+                
+                // Collect sensor selection for this FTP server
+                for (let j = 0; j < 10; j++) {
+                    server.sensor_config.push(getChecked(`ftp_sensor_${i}_${j}`, true));
+                }
+
+                config.ftp_config.servers.push(server);
+            }
+
+            // ========== Collect Logger data (4 FTP servers) ==========
+            for (let i = 0; i < 4; i++) {
+                config.logger_config.save_paths.push(getValue(`ftp_logger_save_path_${i}`, `/LOG/FTP${i + 1}/UNSENT`));
+                config.logger_config.sent_paths.push(getValue(`ftp_logger_sent_path_${i}`, `/LOG/FTP${i + 1}/SENT`));
+            }
+
+            console.log('========================================');
+            console.log('📦 CONFIG TO SAVE:');
+            console.log('========================================');
+            console.log('Config to save:', config);
+            console.log('📊 Summary:');
+            console.log('  • Sensors:', config.sensor_config.sensors.length);
+            console.log('  • DO channels:', config.do_config.enable_list.length);
+            console.log('  • DI channels:', config.di_config.enable_list.length);
+            console.log('  • RS485 Ch1 slaves:', config.rs485_config.slaves[0].enable_list.length);
+            console.log('  • RS485 Ch2 slaves:', config.rs485_config.slaves[1].enable_list.length);
+            console.log('  • FTP servers:', config.ftp_config.servers.length);
+            console.log('========================================');
+            showMessage('⏳ Saving configuration...', 'info');
+
+            const saveToken = localStorage.getItem('authToken');
+            if (!saveToken) {
+                showError('Not authenticated. Please login again.');
+                showLogin();
+                return;
+            }
+
+            fetch('/api/save', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + saveToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(config)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            showError('Session expired. Please login again.');
+                            logout();
+                            return Promise.reject('Unauthorized');
+                        }
+                        throw new Error('Failed to save: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Save response:', data);
+                    if (data && data.success) {
+                        showMessage('✅ Configuration saved! DHA-1 restarting...', 'success');
+                        // Clear auth token as device will restart
+                        setTimeout(() => {
+                            localStorage.removeItem('authToken');
+                            sessionStorage.removeItem('dha1_logged_in');
+                            showLogin();
+                            showMessage('⚠️ Device restarted. Please login again.', 'info');
+                        }, 3000);
+                    } else {
+                        showError('⚠️ Save response unexpected: ' + JSON.stringify(data));
+                    }
+                })
+                .catch(error => {
+                    if (error !== 'Unauthorized') {
+                        console.error('Save config error:', error);
+                        showError('❌ Failed to save: ' + error.message);
+                    }
+                });
+        }
+
+        function showMessage(message, type) {
+            const msgDiv = document.getElementById('status-message');
+            msgDiv.textContent = message;
+            msgDiv.className = 'status-message ' + type;
+            msgDiv.style.display = 'block';
+
+            setTimeout(() => {
+                msgDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            showMessage(message, 'success');
+        }
+
+        function showError(message) {
+            showMessage(message, 'error');
+        }
+
+        function toggleMobileMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            sidebar.classList.toggle('mobile-open');
+
+            // Ẩn/hiện nút hamburger khi sidebar mở/đóng
+            if (sidebar.classList.contains('mobile-open')) {
+                toggle.classList.add('hidden');
+            } else {
+                toggle.classList.remove('hidden');
+            }
+        }
+
+        function closeMobileMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            sidebar.classList.remove('mobile-open');
+            toggle.classList.remove('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const sidebar = document.querySelector('.sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+
+            if (window.innerWidth <= 992) {
+                if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                    sidebar.classList.remove('mobile-open');
+                    toggle.classList.remove('hidden'); // Hiển thị lại nút hamburger
+                }
+            }
+        });
+
+        // Login System
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+
+            // Send login request to DHA-1
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Successful login
+                        localStorage.setItem('authToken', data.token);
+                        hideLogin();
+                        showMessage('✅ Login successful! Welcome to DHA-1 Configuration Portal', 'success');
+
+                        // Store login state
+                        sessionStorage.setItem('dha1_logged_in', 'true');
+                        sessionStorage.setItem('dha1_username', username);
+
+                        // Start RTC refresh after login
+                        startRTCRefresh();
+
+                        // Load configuration after successful login
+                        loadConfiguration();
+                    } else {
+                        // Failed login
+                        errorDiv.textContent = '❌ ' + (data.message || 'Invalid credentials. Please try again.');
+                        errorDiv.style.display = 'block';
+
+                        // Clear password field
+                        document.getElementById('loginPassword').value = '';
+
+                        // Hide error after 3 seconds
+                        setTimeout(() => {
+                            errorDiv.style.display = 'none';
+                        }, 3000);
+                    }
+                })
+                .catch(error => {
+                    console.error('Login error:', error);
+                    errorDiv.textContent = '❌ Connection error. Please check your network.';
+                    errorDiv.style.display = 'block';
+                    setTimeout(() => {
+                        errorDiv.style.display = 'none';
+                    }, 3000);
+                });
+        }
+
+        function hideLogin() {
+            const overlay = document.getElementById('loginOverlay');
+            const mainContainer = document.getElementById('mainContainer');
+
+            overlay.classList.add('hidden');
+            mainContainer.classList.remove('login-active');
+
+            // Remove the overlay after animation completes
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        function showLogin() {
+            const overlay = document.getElementById('loginOverlay');
+            const mainContainer = document.getElementById('mainContainer');
+
+            overlay.style.display = 'flex';
+            overlay.classList.remove('hidden');
+            mainContainer.classList.add('login-active');
+
+            // Focus on username field
+            setTimeout(() => {
+                document.getElementById('loginUsername').focus();
+            }, 100);
+        }
+
+        function logout() {
+            // Show confirmation dialog
+            const confirmed = confirm('Are you sure you want to logout from the DHA-1 Configuration Portal?\n\nYou will need to login again to access the portal.');
+
+            if (!confirmed) {
+                return;
+            }
+
+            // Send logout request to DHA-1
+            fetch('/api/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Clear local storage and session
+                    localStorage.removeItem('authToken');
+                    sessionStorage.removeItem('dha1_logged_in');
+                    sessionStorage.removeItem('dha1_username');
+
+                    // Stop RTC refresh
+                    stopRTCRefresh();
+
+                    // Show login screen
+                    showLogin();
+                    showMessage('✅ Logged out successfully', 'success');
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    // Still logout locally even if server request fails
+                    localStorage.removeItem('authToken');
+                    sessionStorage.removeItem('dha1_logged_in');
+                    sessionStorage.removeItem('dha1_username');
+
+                    // Stop RTC refresh
+                    stopRTCRefresh();
+
+                    showLogin();
+                });
+        }
+
+        function checkLoginState() {
+            const isLoggedIn = sessionStorage.getItem('dha1_logged_in');
+
+            if (isLoggedIn === 'true') {
+                // User is already logged in
+                hideLogin();
+                // Start RTC refresh for already logged in users
+                startRTCRefresh();
+            } else {
+                // Show login modal
+                showLogin();
+            }
+        }
+
+        // Password Change Functions
+        function checkPasswordStrength() {
+            const password = document.getElementById('newPassword').value;
+            const strengthDiv = document.getElementById('passwordStrength');
+
+            if (password.length === 0) {
+                strengthDiv.style.display = 'none';
+                return;
+            }
+
+            let score = 0;
+            let feedback = '';
+
+            // Length check
+            if (password.length >= 8) score++;
+            else feedback = 'Password must be at least 8 characters';
+
+            // Uppercase check
+            if (/[A-Z]/.test(password)) score++;
+            else if (score > 0) feedback = 'Add an uppercase letter';
+
+            // Lowercase check
+            if (/[a-z]/.test(password)) score++;
+            else if (score > 0) feedback = 'Add a lowercase letter';
+
+            // Number check
+            if (/\d/.test(password)) score++;
+            else if (score > 0) feedback = 'Add a number';
+
+            // Special character check
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score++;
+            else if (score > 0) feedback = 'Add a special character';
+
+            // Update strength display
+            strengthDiv.className = 'password-strength';
+            if (score < 3) {
+                strengthDiv.classList.add('weak');
+                strengthDiv.textContent = '🔴 Weak: ' + feedback;
+            } else if (score < 5) {
+                strengthDiv.classList.add('medium');
+                strengthDiv.textContent = '🟡 Medium: Consider adding more complexity';
+            } else {
+                strengthDiv.classList.add('strong');
+                strengthDiv.textContent = '🟢 Strong: Password meets all requirements';
+            }
+
+            checkPasswordMatch();
+        }
+
+        function checkPasswordMatch() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const matchDiv = document.getElementById('passwordMatch');
+            const changeBtn = document.getElementById('changePasswordBtn');
+
+            if (confirmPassword.length === 0) {
+                matchDiv.style.display = 'none';
+                changeBtn.disabled = true;
+                return;
+            }
+
+            if (newPassword === confirmPassword) {
+                matchDiv.className = 'password-strength strong';
+                matchDiv.textContent = '✅ Passwords match';
+                matchDiv.style.display = 'block';
+
+                // Enable button if password is strong enough
+                const strengthDiv = document.getElementById('passwordStrength');
+                if (strengthDiv.classList.contains('strong') || strengthDiv.classList.contains('medium')) {
+                    changeBtn.disabled = false;
+                } else {
+                    changeBtn.disabled = true;
+                }
+            } else {
+                matchDiv.className = 'password-strength weak';
+                matchDiv.textContent = '❌ Passwords do not match';
+                matchDiv.style.display = 'block';
+                changeBtn.disabled = true;
+            }
+        }
+
+        function handlePasswordChange(event) {
+            event.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageDiv = document.getElementById('passwordChangeMessage');
+            const currentUsername = sessionStorage.getItem('dha1_username');
+
+            // Get current stored passwords (this should ideally be from server)
+            const validCredentials = {
+                'admin': 'admin123',
+                'user': 'user123',
+                'dha1': 'dha1pass'
+            };
+
+            // Check current password
+            if (!validCredentials[currentUsername] || validCredentials[currentUsername] !== currentPassword) {
+                messageDiv.textContent = '❌ Current password is incorrect';
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'login-error';
+                return;
+            }
+
+            // Validate new password strength
+            if (newPassword.length < 8 || !/[A-Z]/.test(newPassword) || !/[a-z]/.test(newPassword) ||
+                !/\d/.test(newPassword) || !/[!@#$%^&*(),.?":{}|<>]/.test(newPassword)) {
+                messageDiv.textContent = '❌ New password does not meet security requirements';
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'login-error';
+                return;
+            }
+
+            // Check password confirmation
+            if (newPassword !== confirmPassword) {
+                messageDiv.textContent = '❌ New passwords do not match';
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'login-error';
+                return;
+            }
+
+            // Simulate password update (in real implementation, this would be sent to server)
+            validCredentials[currentUsername] = newPassword;
+
+            // Show success message
+            messageDiv.textContent = '✅ Password changed successfully!';
+            messageDiv.style.display = 'block';
+            messageDiv.className = 'login-error';
+            messageDiv.style.background = 'rgba(34, 197, 94, 0.1)';
+            messageDiv.style.color = '#22c55e';
+            messageDiv.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+
+            // Clear form
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('passwordStrength').style.display = 'none';
+            document.getElementById('passwordMatch').style.display = 'none';
+            document.getElementById('changePasswordBtn').disabled = true;
+
+            // Show global success message
+            showMessage('🔐 Password updated successfully!', 'success');
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Dashboard Data Functions
+        function updateDashboard() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                // Not logged in, skip update
+                console.log('[Dashboard] No auth token found, skipping update');
+                return;
+            }
+
+            console.log('[Dashboard] Starting dashboard data fetch...');
+            console.log('[Dashboard] Request details:', {
+                url: '/api/dashboard',
+                method: 'GET',
+                timestamp: new Date().toISOString()
+            });
+
+            fetch('/api/dashboard', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log('[Dashboard] Response received:', {
+                        status: response.status,
+                        statusText: response.statusText,
+                        ok: response.ok,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            console.warn('[Dashboard] Session expired, stopping refresh');
+                            // Session expired, stop refresh
+                            stopDashboardRefresh();
+                            return Promise.reject('Unauthorized');
+                            localStorage.removeItem('authToken');
+                        }
+                        throw new Error('Failed to fetch dashboard: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log('[Dashboard] Data received successfully:', {
+                    //     sensorRawValues: data.sensor_raw_value_list ? data.sensor_raw_value_list.length : 0,
+                    //     sensorCalibValues: data.sensor_calib_value_list ? data.sensor_calib_value_list.length : 0,
+                    //     sensorStatuses: data.sensor_status_list ? data.sensor_status_list.length : 0,
+                    //     aiValues: data.ai_raw_value_list ? data.ai_raw_value_list.length : 0,
+                    //     diStatuses: data.di_status_list ? data.di_status_list.length : 0,
+                    //     doStatuses: data.do_status_list ? data.do_status_list.length : 0,
+                    //     timestamp: new Date().toISOString()
+                    // });
+                    console.log("Type of data", typeof data);
+                    console.log('[Dashboard] Full response data:', data);
+                    // Update Sensor Values
+                    if (data.sensors) {
+                        for (let i = 0; i < data["sensors"].length; i++) {
+                            const nameElement = document.getElementById('sensor-name-' + String(i + 1));
+                            if (nameElement) {
+                                nameElement.value = data["sensors"][String(i)]["name"];
+                            }
+                            const rawElement = document.getElementById('sensor-raw-' + String(i + 1));
+                            if (rawElement) {
+                                rawElement.value = data["sensors"][String(i)]["raw"];
+                            }
+                            const calibElement = document.getElementById('sensor-calib-' + (i + 1));
+                            if (calibElement) {
+                                calibElement.value = data["sensors"][String(i)]["calib"];
+                            }
+                            const statusElement = document.getElementById('sensor-status-' + (i + 1));
+                            if (statusElement) {
+                                const status = data["sensors"][String(i)]["status"][i];
+                                let statusText = 'Normal';
+                                let statusColor = '#10b981'; // green
+
+                                if (status === 1) {
+                                    statusText = 'Calibration';
+                                    statusColor = '#f59e0b'; // orange
+                                } else if (status === 2) {
+                                    statusText = 'Error';
+                                    statusColor = '#ef4444'; // red
+                                } else if (status === 3) {
+                                    statusText = 'Disabled';
+                                    statusColor = '#6b7280'; // gray
+                                }
+
+                                statusElement.value = statusText;
+                                statusElement.style.color = statusColor;
+                                statusElement.style.fontWeight = 'bold';
+                            }
+                            const alarmElement = document.getElementById('sensor-alarm-' + (i + 1));
+                            if (alarmElement) {
+                                const alarm = data["sensors"][String(i)]["alarm"];
+                                let alarmText = 'No Alarm';
+                                let alarmColor = '#10b981'; // green
+                                if (alarm === true) {
+                                    alarmText = 'Alarm';
+                                    alarmColor = '#ef4444'; // red
+                                } else if (alarm === false) {
+                                    alarmText = 'None';
+                                    alarmColor = '#6b7280'; // gray
+                                }
+                                alarmElement.value = alarmText;
+                                alarmElement.style.color = alarmColor;
+                                alarmElement.style.fontWeight = 'bold';
+                            }
+                            const warningElement = document.getElementById('sensor-warning-' + (i + 1));
+                            if (warningElement) {
+                                const warning = data["sensors"][String(i)]["warning"];
+                                let warningText = 'No Warning';
+                                let warningColor = '#10b981'; // green
+                                if (warning === true) {
+                                    warningText = 'Warning';
+                                    warningColor = '#f59e0b'; // orange
+                                } else if (warning === false) {
+                                    warningText = 'None';
+                                    warningColor = '#6b7280'; // gray
+                                }
+                                warningElement.value = warningText;
+                                warningElement.style.color = warningColor;
+                                warningElement.style.fontWeight = 'bold';
+                            }
+                        }
+                    }
+
+                    // Update RS485 Channel 1 Values (if exists)
+                    if (data.rs485_channel_1){
+                        for (let i = 0; i < data.rs485_channel_1.length; i++) {
+                            const rs485_Ch1_High_16bits_Element = document.getElementById('rs485-ch1-s' + (i + 1) + "-high");
+                            if (rs485_Ch1_High_16bits_Element) {
+                                rs485_Ch1_High_16bits_Element.value = data.rs485_channel_1[i]["high_16bits"];
+                                rs485_Ch1_High_16bits_Element.style.fontWeight = 'bold';
+                            }
+                            const rs485_Ch1_Low_16bits_Element = document.getElementById('rs485-ch1-s' + (i + 1) + "-low");
+                            if (rs485_Ch1_Low_16bits_Element) {
+                                rs485_Ch1_Low_16bits_Element.value = data.rs485_channel_1[i]["low_16bits"];
+                                rs485_Ch1_Low_16bits_Element.style.fontWeight = 'bold';
+                            }
+                            // response
+                            const rs485_Ch1_Response_Element = document.getElementById('rs485-ch1-s' + (i + 1) + "-resp");
+                            if (rs485_Ch1_Response_Element) {
+                                rs485_Ch1_Response_Element.value = data.rs485_channel_1[i]["response"];
+                                rs485_Ch1_Response_Element.style.fontWeight = 'bold';
+                            
+                            }
+                        }
+                    }
+                    // Update RS485 Channel 2 Values (if exists)
+                    if (data.rs485_channel_2){
+                        for (let i = 0; i < data.rs485_channel_2.length; i++) {
+                            const rs485_Ch2_High_16bits_Element = document.getElementById('rs485-ch2-s' + (i + 1) + "-high");
+                            if (rs485_Ch2_High_16bits_Element) {
+                                rs485_Ch2_High_16bits_Element.value = data.rs485_channel_2[i]["high_16bits"];
+                                rs485_Ch2_High_16bits_Element.style.fontWeight = 'bold';
+                            }
+                            const rs485_Ch2_Low_16bits_Element = document.getElementById('rs485-ch2-s' + (i + 1) + "-low");
+                            if (rs485_Ch2_Low_16bits_Element) {
+                                rs485_Ch2_Low_16bits_Element.value = data.rs485_channel_2[i]["low_16bits"];
+                                rs485_Ch2_Low_16bits_Element.style.fontWeight = 'bold';
+                            }
+                            // response
+                            const rs485_Ch2_Response_Element = document.getElementById('rs485-ch2-s' + (i + 1) + "-resp");
+                            if (rs485_Ch2_Response_Element) {
+                                rs485_Ch2_Response_Element.value = data.rs485_channel_2[i]["response"];
+                                rs485_Ch2_Response_Element.style.fontWeight = 'bold';
+                            
+                            }
+                        }
+                    }
+
+                    // Update AI Channels (if exists)
+                    if (data.ai_channels) {
+                        for (let i = 0; i < data.ai_channels.length && i < 4; i++) {
+                            const aiRawElement = document.getElementById('ai-raw-' + (i + 1));
+                            if (aiRawElement) {
+                                aiRawElement.value = data["ai_channels"][i]["raw_value"];
+                                aiRawElement.style.fontWeight = 'bold';
+                            }
+                            const aiVoltageElement = document.getElementById('ai-voltage-' + (i + 1));
+                            if (aiVoltageElement) {
+                                aiVoltageElement.value = data["ai_channels"][i]["ai_voltage"];
+                                aiVoltageElement.style.fontWeight = 'bold';
+                            }
+                            const aiCurrentElement = document.getElementById('ai-current-' + (i + 1));;
+                            if (aiCurrentElement) {
+                                aiCurrentElement.value = data["ai_channels"][i]["ai_current"];
+                                aiCurrentElement.style.fontWeight = 'bold';
+                            }
+                        }
+                    }
+
+                    // Update DI status (if exists)
+                    if (data.di_channels) {
+                        for (let i = 0; i < data.di_channels.length && i < 4; i++) {
+                            const diElement = document.getElementById('di-status-' + (i + 1));
+                            if (diElement) {
+                                diElement.value = data["di_channels"][i]["state"] ? 'ON' : 'OFF';
+                                // Update color and font weight
+                                diElement.style.color = data["di_channels"][i]["state"] ? '#e95d39' : '#175c59';
+                                diElement.style.fontWeight = 'bold';
+                            }
+                        }
+                    }
+
+                    // Update DO status (if exists)
+                    if (data.do_channels) {
+                        for (let i = 0; i < data.do_channels.length && i < 4; i++) {
+                            const doElement = document.getElementById('do-status-' + (i + 1));
+                            if (doElement) {
+                                doElement.value = data["do_channels"][i]["state"] ? 'ON' : 'OFF';
+                                // Update color and font weight
+                                doElement.style.color = data["do_channels"][i]["state"] ? '#e95d39' : '#175c59';
+                                doElement.style.fontWeight = 'bold';
+                            }
+                        }
+                    }
+
+                    // Update RTC status
+                    if (data.rtc) {
+                        // date
+                        const rtcElement = document.getElementById('rtc-date');
+                        if (rtcElement) {
+                            const rtc = data.rtc;
+                            const rtcStr = String(rtc.day || 0).padStart(2, '0') + '/' +
+                                String(rtc.month || 0).padStart(2, '0') + '/' +
+                                String(rtc.year || 0).padStart(4, '0');
+                            rtcElement.value = rtcStr;
+                            rtcElement.style.fontWeight = 'bold';
+                        }
+                        // time
+                        const rtctimeElement = document.getElementById('rtc-time');
+                        if (rtctimeElement) {
+                            const rtc = data.rtc;
+                            const rtcTimeStr = String(rtc.hour || 0).padStart(2, '0') + ':' +
+                                String(rtc.minute || 0).padStart(2, '0') + ':' +
+                                String(rtc.second || 0).padStart(2, '0');
+                            rtctimeElement.value = rtcTimeStr;
+                            rtctimeElement.style.fontWeight = 'bold';
+                        }
+                        // day of week
+                        const rtcDOWElement = document.getElementById('rtc-day-of-week');
+                        if (rtcDOWElement) {
+                            const rtc = data.rtc;
+                            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                            rtcDOWElement.value = daysOfWeek[rtc.day_of_week] || 'N/A';
+                            rtcDOWElement.style.fontWeight = 'bold';
+                        }
+                        // temperature
+                        const rtcTempElement = document.getElementById('rtc-temperature');
+                        if (rtcTempElement) {
+                            const rtc = data.rtc;
+                            rtcTempElement.value = rtc.temperature !== undefined ? rtc.temperature + ' °C' : 'N/A';
+                            rtcTempElement.style.fontWeight = 'bold';
+                        }
+                    }
+                    
+                    
+                    // System status
+                    if (data.system) {
+                        const system_status_sim = document.getElementById('system-status-sim');
+                        if (system_status_sim) {
+                            system_status_sim.value = data.system.sim_ready  ? 'Ready' : 'Not Ready';
+                            system_status_sim.style.color = data.system.sim_ready ? '#10b981' : '#ef4444';
+                            system_status_sim.style.fontWeight = 'bold';
+                        }
+                        const system_status_mqtt = document.getElementById('system-status-mqtt');
+                        if (system_status_mqtt) {
+                            system_status_mqtt.value = data.system.mqtt_connected ? 'Connected' : 'Disconnected';
+                            system_status_mqtt.style.color = data.system.mqtt_connected ? '#10b981' : '#ef4444';
+                            system_status_mqtt.style.fontWeight = 'bold';
+                        }
+                        const system_status_ftp = document.getElementById('system-status-ftp');
+                        if (system_status_ftp) {
+                            system_status_ftp.value = data.system.ftp_connected ? 'Connected' : 'Disconnected';
+                            system_status_ftp.style.color = data.system.ftp_connected ? '#10b981' : '#ef4444';
+                            system_status_ftp.style.fontWeight = 'bold';
+                        }
+                        const system_status_sdcard = document.getElementById('system-status-sdcard');
+                        if (system_status_sdcard) {
+                            system_status_sdcard.value = data.system.sd_card_mounted ? 'Ready' : 'Not Ready';
+                            system_status_sdcard.style.color = data.system.sd_card_mounted ? '#10b981' : '#ef4444';
+                            system_status_sdcard.style.fontWeight = 'bold';
+                        }
+                        const system_uptime = document.getElementById('system-uptime');
+                        if (system_uptime) {
+                            system_uptime.value = data.system.uptime || 'N/A';
+                            // system_uptime.style.color = data.system.uptime ? '#10b981' : '#ef4444';
+                            system_uptime.style.fontWeight = 'bold';
+                        }
+                        const system_free_heap = document.getElementById('system-free-heap');
+                        if (system_free_heap) {
+                            system_free_heap.value = data.system.free_heap !== undefined ? data.system.free_heap + ' bytes' : 'N/A';
+                            // system_free_heap.style.color = data.system.free_heap ? '#10b981' : '#ef4444';
+                            system_free_heap.style.fontWeight = 'bold';
+                        }
+                        const system_client_number = document.getElementById('system-client-number');
+                        if (system_client_number) {
+                            system_client_number.value = data.system.client_number || 'N/A';
+                            // system_client_number.style.color = data.system.client_number ? '#10b981' : '#ef4444';
+                            system_client_number.style.fontWeight = 'bold';
+                        }
+                        const system_ip_address = document.getElementById('system-ip-address');
+                        if (system_ip_address) {
+                            system_ip_address.value = data.system.ip_address || 'N/A';
+                            // system_ip_address.style.color = data.system.ip_address ? '#10b981' : '#ef4444';
+                            system_ip_address.style.fontWeight = 'bold';
+                        }
+                    }
+
+                    console.log('[Dashboard] Data processing completed successfully');
+                    
+                    
+                })
+                .catch(error => {
+                    if (error !== 'Unauthorized') {
+                        console.error('[Dashboard] Error fetching dashboard data:', {
+                            message: error.message,
+                            stack: error.stack,
+                            timestamp: new Date().toISOString()
+                        });
+                        console.error('[Dashboard] Full error object:', error);
+                    } else {
+                        console.warn('[Dashboard] Unauthorized access - session expired');
+                    }
+                });
+        }
+
+        // Auto-refresh dashboard every 2 seconds when dashboard tab is active
+        let dashboardInterval = null;
+
+        function startDashboardRefresh() {
+            if (dashboardInterval) {
+                clearInterval(dashboardInterval);
+            }
+            // try: catch
+
+            updateDashboard(); // Initial load
+            dashboardInterval = setInterval(updateDashboard, 5000); // Update every 5 seconds
+        }
+
+        function stopDashboardRefresh() {
+            if (dashboardInterval) {
+                clearInterval(dashboardInterval);
+                dashboardInterval = null;
+            }
+        }
+
+        // RTC Functions
+        function updateRTCDisplay() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.log('[RTC] No auth token found, skipping RTC update');
+                return;
+            }
+
+            fetch('/api/rtc', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            console.warn('[RTC] Session expired');
+                            return Promise.reject('Unauthorized');
+                        }
+                        throw new Error('Failed to fetch RTC: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('[RTC] Data received:', data);
+                    if (data && data.rtc) {
+                        const rtc = data.rtc;
+
+                        // Format time as HH:MM:SS
+                        const timeStr = String(rtc.hour || 0).padStart(2, '0') + ':' +
+                            String(rtc.minute || 0).padStart(2, '0') + ':' +
+                            String(rtc.second || 0).padStart(2, '0');
+
+                        // Format date as YYYY/MM/DD
+                        const dateStr = String(rtc.year || 0) + '/' +
+                            String(rtc.month || 0).padStart(2, '0') + '/' +
+                            String(rtc.day || 0).padStart(2, '0');
+
+                        // Update sidebar display
+                        const timeElement = document.getElementById('sidebar-rtc-time');
+                        const dateElement = document.getElementById('sidebar-rtc-date');
+
+                        if (timeElement) timeElement.textContent = timeStr;
+                        if (dateElement) dateElement.textContent = dateStr;
+                    }
+                })
+                .catch(error => {
+                    if (error !== 'Unauthorized') {
+                        console.error('[RTC] Error fetching RTC data:', error);
+                    }
+                });
+        }
+
+        // Auto-refresh RTC every 1 second
+        let rtcInterval = null;
+
+        function startRTCRefresh() {
+            if (rtcInterval) {
+                clearInterval(rtcInterval);
+            }
+            updateRTCDisplay(); // Initial load
+            rtcInterval = setInterval(updateRTCDisplay, 1000); // Update every 1 second
+        }
+
+        function stopRTCRefresh() {
+            if (rtcInterval) {
+                clearInterval(rtcInterval);
+                rtcInterval = null;
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', function () {
+            checkLoginState();
+            initSensors();
+            initRS485();
+            initFTP();
+            startDashboardRefresh(); // Start dashboard refresh on page load
+            startRTCRefresh(); // Start RTC refresh on page load
+            
+            // Hide save config button if dashboard is the default active tab
+            const saveConfigBtn = document.getElementById('save-config-btn');
+            const dashboardTab = document.getElementById('dashboard');
+            if (saveConfigBtn && dashboardTab && dashboardTab.classList.contains('active')) {
+                saveConfigBtn.style.display = 'none';
+            }
+        });
+        function openDashboardTab(evt, tabId) {
+            // hide all tab sections
+            document.querySelectorAll('.dashboard-tab-section').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // remove active class from all buttons
+            document.querySelectorAll('.dashboard-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // activate the selected tab
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>)rawliteral";

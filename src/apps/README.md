@@ -1,0 +1,1 @@
+to create new app copy the atApp_ABC and replace (Ctr + H) by the name of app you wanna dev
